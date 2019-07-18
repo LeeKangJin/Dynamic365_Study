@@ -9,3 +9,10 @@
 - [Customer Provided Service](https://github.com/LeeKangJin/Dynamic365_Study/blob/master/Dynamic_365_Lecture/Lecture4.md)
   
 ### How to use D365?
+
+
+
+### Vosial Studio Tip
+
+- if you want make some Automatic code , you can select code line and
+  #### Ctrl + MouseRightButton + FastRefactoring
