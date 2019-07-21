@@ -24,4 +24,10 @@
 - String vs string
   #### functions is same, String is more powerful to Class.
 
+
+
+### MdFile Tip
+
+- [Mark Down Tutorial](https://gist.github.com/ihoneymon/652be052a0727ad59601)
+
   
