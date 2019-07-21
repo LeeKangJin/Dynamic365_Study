@@ -1,7 +1,7 @@
 # Dynamic365_Study
 
 ## TIL of Dynamic 365. 
-
+- [learning page](https://docs.microsoft.com/ko-kr/learn/browse/?term=dynamic%20365)
 
 ### What is the Dynamics 365?
 
@@ -12,7 +12,16 @@
 
 
 
-### Vosial Studio Tip
+### Vosial Studio (C#) Tip
 
-- if you want make some Automatic code , you can select code line and
+- Fast Refactoring
   #### Ctrl + MouseRightButton + FastRefactoring
+
+
+- Remark
+  #### Ctrl+K+C   , Ctrl+K+U( free )
+
+- String vs string
+  #### functions is same, String is more powerful to Class.
+
+  
