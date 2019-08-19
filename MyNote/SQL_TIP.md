@@ -1,0 +1,3 @@
+```
+SELECT @@ROWCOUNT AS CNT
+```
