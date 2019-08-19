@@ -1,4 +1,4 @@
-Visual Studio (C#) Tip
+# Visual Studio (C#) Tip
 Fast Refactoring
 
 Ctrl + MouseRightButton + FastRefactoring
