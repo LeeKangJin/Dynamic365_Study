@@ -17,6 +17,7 @@
 - Fast Refactoring
   #### Ctrl + MouseRightButton + FastRefactoring
   #### Code Snippet : cw (tap, tap) - Console.WirteLine() Automatically
+  ####                ctor - Constructer Automatically
 
 - Remark
   #### Ctrl+K+C   , Ctrl+K+U( free )
