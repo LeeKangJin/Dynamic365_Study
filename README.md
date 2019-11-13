@@ -1,9 +1,9 @@
 # Dynamic365_Study
 
 ## INTRODUCE
-- Hi! This page is my note of dynamics 365. \n
-  I'm Kangjin Lee in South Korea. The Sofeware Engineer \n
-  If you have any question of this page please contact me - himnae5181@naver.com \n
+- Hi! This page is my note of dynamics 365.  
+  I'm Kangjin Lee in South Korea. The Sofeware Engineer  
+  If you have any question of this page please contact me - himnae5181@naver.com  
   
 ## TIL of Dynamic 365. 
 - [learning page](https://docs.microsoft.com/ko-kr/learn/browse/?term=dynamic%20365)
@@ -35,7 +35,7 @@
 ### MdFile Tip
 
 - [Mark Down Tutorial](https://gist.github.com/ihoneymon/652be052a0727ad59601)
-
+- [Mark Down Tip](https://github.com/sejong-interface/Interface_Manual/wiki/Git-시작하기%233-README.md-파일-작성하기!)
 
 
 #### Web / Native / Hybrid 
