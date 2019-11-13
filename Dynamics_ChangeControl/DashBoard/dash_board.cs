@@ -302,12 +302,12 @@ namespace ConsoleAppGwProposal
             string strMofProcedure = "GW_GET_CARD_MODIFY_DATA";
 
             #region 예산 결재 문서
-            //assetDocument(service, strProcedure, 0);
+            assetDocument(service, strProcedure, 0);
             //assetDocument(service, strMofProcedure, 1);
             #endregion
             Console.WriteLine("업무협조시작");
             #region 업무협조-인장날인
-            coworkDocument(service, strProcedure, 0);
+            //coworkDocument(service, strProcedure, 0);
             //coworkDocument(service, strMofProcedure, 1);
             #endregion
             Console.WriteLine("신규업체등록시작");
@@ -631,32 +631,10 @@ namespace ConsoleAppGwProposal
 
                                     }
 
-                                    if (type == 0)
-                                    {
-                                        service.Create(gwLegacy);
-                                    }
-
-
-                                    else if (type == 1)
-                                    {
-
-                                        Guid retGuid = retID(service, dr, "new_form_legacy", "new_txt_form_inst_id", "FORM_INST_ID");
-
-                                        if (retGuid == null)
-                                        {
-                                            //error guid is null..
-                                            Console.WriteLine("error- guid is null");
-                                        }
-                                        gwLegacy.Id = retGuid;
-                                        service.Update(gwLegacy);
-                                    }
-
-
                                 }
 
                             }
-
-
+                            
                             else if (temp == "예산배정")
                             {
                                 var headers = doc.DocumentNode.SelectNodes("//tr/th");
@@ -731,9 +709,14 @@ namespace ConsoleAppGwProposal
                                 gwLegacy["new_txt_doamindata"] = result[1];
                                 string[] result2 = hs[0].Attributes["name"].Value.ToString().Split(';');
                                 gwLegacy["new_txt_doamindataname"] = result2[0];
-                            } 
-                      
-                           
+                            }
+
+                            if (gwLegacy["new_txt_doamindata"].ToString() == String.Empty)
+                            {
+                                gwLegacy["new_txt_doamindata"] = ("팀원").ToString();
+                            }
+                         
+                            //팀장 
                             if (type == 0)
                             {
                                 service.Create(gwLegacy);
