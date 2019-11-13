@@ -1,9 +1,9 @@
 # Dynamic365_Study
 
 ## INTRODUCE
-- Hi! This page is my note of dynamics 365. 
-  I'm Kangjin Lee in South Korea. The Sofeware Engineer
-  If you have any question of this page please contact me - himnae5181@naver.com
+- Hi! This page is my note of dynamics 365. \n
+  I'm Kangjin Lee in South Korea. The Sofeware Engineer \n
+  If you have any question of this page please contact me - himnae5181@naver.com \n
   
 ## TIL of Dynamic 365. 
 - [learning page](https://docs.microsoft.com/ko-kr/learn/browse/?term=dynamic%20365)
