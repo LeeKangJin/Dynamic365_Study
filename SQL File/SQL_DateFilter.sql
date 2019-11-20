@@ -1,6 +1,6 @@
 USE [CELLCRM_MSCRM]
 GO
-/****** Object:  StoredProcedure [dbo].[usp_GetEspReqList]    Script Date: 2019-11-19 오후 3:19:59 ******/
+/****** Object:  StoredProcedure [dbo].[usp_GetEspReqList]    Script Date: 2019-11-19 오후 4:17:31 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -22,9 +22,11 @@ ALTER PROCEDURE [dbo].[usp_GetEspReqList]
 	,@detail_request1 NVARCHAR(100)
 	,@detail_request2 NVARCHAR(100)
 	,@account NVARCHAR(100)
-	,@request_date_form Date
+	,@request_date_from Date
 	,@request_date_to Date
 
+
+	
 
 AS
 BEGIN
@@ -35,10 +37,14 @@ BEGIN DROP TABLE #APPROVAL2 END
 IF OBJECT_ID('tempdb..#new_approval') IS NOT NULL
 BEGIN DROP TABLE #new_approval END
 
-
--- 2019 11 19 
+IF @request_date_from IS NULL
+BEGIN SET @request_date_from = CONVERT(datetime,'1900-01-01') END
 IF @request_date_to IS NULL
-BEGIN SET @request_date_to = CONVERT(date,GETDATE()) END
+BEGIN SET @request_date_to = CONVERT(datetime,'9999-12-31') END
+
+
+
+
 
 
 --SET @request_item = (
@@ -163,9 +169,10 @@ INNER JOIN Contact C ON I.CustomerId = C.ContactId                              
 INNER JOIN #new_approval A ON R.new_it_requestId = A.new_l_it_request                      --결재
 LEFT JOIN (SELECT ObjectTypeCode,AttributeValue,AttributeName,[Value] FROM StringMap WHERE AttributeName = 'new_p_request_item' AND ObjectTypeCode = 10051) p_request_item ON T.new_p_request_item = p_request_item.AttributeValue
 WHERE 1=1
-AND R.new_dt_request >= @request_date_form
-AND R.new_dt_complete <= @request_date_to
-AND T.new_p_request_item LIKE '%'+@request_item+'%'
+--AND DATEADD(HOUR,9,R.new_dt_request) >= @request_date_from
+--AND DATEADD(HOUR,9,R.new_dt_request) <=  @request_date_to
+AND DATEADD(HOUR,9,R.new_dt_request) BETWEEN @request_date_from AND @request_date_to
+AND T.new_p_request_item LIKE '%'+@request_item+'%' 
 AND T.new_txt_request_type_detail1 LIKE '%' + @detail_request1 + '%' --'네트워크'
 AND T.new_txt_request_type_detail2 LIKE '%' + @detail_request2 + '%' --'VPN 사용권한'
 AND C.AccountId LIKE '%' + @account + '%'
