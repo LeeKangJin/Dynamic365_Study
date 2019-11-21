@@ -41,3 +41,4 @@
 #### Web / Native / Hybrid 
 
 #### SQL Study
+-[SQL Study by Celltrion](https://github.com/LeeKangJin/Dynamic365_Study/tree/master/SQL%20File)
