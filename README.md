@@ -1,11 +1,11 @@
 # Dynamic365_Study
 
-## INTRODUCE
+## 1. INTRODUCE
 - Hi! This page is my note of dynamics 365.  
   I'm Kangjin Lee in South Korea. The Sofeware Engineer  
   If you have any question of this page please contact me - himnae5181@naver.com  
   
-## TIL of Dynamic 365. 
+## 2. TIL of Dynamic 365. 
 - [learning page](https://docs.microsoft.com/ko-kr/learn/browse/?term=dynamic%20365)
 
 ### What is the Dynamics 365?
@@ -13,23 +13,10 @@
 ### Why use D365?
 - [Customer Provided Service](https://github.com/LeeKangJin/Dynamic365_Study/blob/master/Dynamic_365_Lecture/Lecture4.md)
   
-### How to use D365?
-
-
+## 3. Personal Study
 
 ### Visual Studio (C#) Tip
-
-- Fast Refactoring
-  #### Ctrl + MouseRightButton + FastRefactoring
-  #### Code Snippet : cw (tap, tap) - Console.WirteLine() Automatically
-  ####                ctor - Constructer Automatically
-
-- Remark
-  #### Ctrl+K+C   , Ctrl+K+U( free )
-
-- String vs string
-  #### functions is same, String is more powerful to Class.
-
+ - [C# Tip](https://github.com/LeeKangJin/Dynamic365_Study/blob/master/VisualStudio_C%23/VisualStudio_TIP.md)
 
 
 ### MdFile Tip
