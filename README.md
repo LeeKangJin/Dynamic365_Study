@@ -5,7 +5,7 @@
   I'm Kangjin Lee in South Korea. The Sofeware Engineer  
   If you have any question of this page please contact me - himnae5181@naver.com  
   
-## 2. TIL of Dynamic 365. 
+## 2. Dynamics Tutorial
 - [learning page](https://docs.microsoft.com/ko-kr/learn/browse/?term=dynamic%20365)
 
 ### What is the Dynamics 365?
