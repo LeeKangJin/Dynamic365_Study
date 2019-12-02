@@ -1,11 +1,10 @@
-﻿<!DOCTYPE html>
+﻿
 <html>
 <head>
     <meta charset="utf-8" />
     <title>KangJin 실험실</title>
 
     <script src="http://code.jquery.com/jquery-latest.js"></script>
-
     <script language='javascript'>
 
 
@@ -13,18 +12,14 @@
         function bt1_click() {
 
 
-            //Page Methods 가 서버에 올라가면 안될 것 같은데?
-            //var data = new PageMethods.InputGetDate();
-            //data.a = 1;
-            //data.b = 2;
             var par = {};
             par.a = parseInt(document.getElementById("t1").value);
-            par.b = parseInt(document.getElementById("t2").value);4
+            par.b = parseInt(document.getElementById("t2").value);
+
 
             //var datav = JSON.stringify({
             //    a:  document.getElementById("t1").value ,
             //    b: document.getElementById("t2").value
-
             //});
 
             // second: document.getElementById("t2").value
@@ -32,8 +27,8 @@
             //var data_test_string = "" + document.getElementById("t1").value + document.getElementById("t2").value;
             $.ajax({
                 type: 'POST',
-                url: "http://localhost:64011/Service1.svc/GetData",
-                data: JSON.stringify(par),                            //JSON.stringify({ "first": document.getElementById("t1").value, "second": document.getElementById("t2").value }),
+                url: "http://cellapiexternal.celltrion.com/Service1.svc/GetData",
+                data: JSON.stringify(par),                       //JSON.stringify({ "first": document.getElementById("t1").value, "second": document.getElementById("t2").value }),
                 contentType: "application/json; charset=utf-8",
                 dataType: "JSON",
                 success: function (ret) {
