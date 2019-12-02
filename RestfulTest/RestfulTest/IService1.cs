@@ -18,7 +18,7 @@ namespace RestfulTest
        // [WebGet(UriTemplate = "GetData/{value}")] -> Get 방식
        [WebInvoke(UriTemplate = "GetData",
                   Method ="POST",
-                  BodyStyle = WebMessageBodyStyle.WrappedRequest,
+                  //BodyStyle = WebMessageBodyStyle.WrappedRequest,
                   RequestFormat = WebMessageFormat.Json,
                   ResponseFormat = WebMessageFormat.Json)]
         string GetData(InputGetDate param);
@@ -41,19 +41,11 @@ namespace RestfulTest
     [DataContract]
     public class add
     {
-        int add_number1 = 0;
-        int add_number2 = 0;
-
         [DataMember]
-        public int add1 {
-            get { return add_number1; }
-            set { add_number1 = value; }
-        }
+        int first = 0;
         [DataMember]
-        public int add2 {
-            get { return add_number2; }
-            set { add_number2 = value; }
-        }
+        int second = 0;
+        
 
     }
 

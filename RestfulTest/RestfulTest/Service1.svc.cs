@@ -23,11 +23,16 @@ namespace RestfulTest
         public string GetData(InputGetDate param)
         {
 
-            Console.WriteLine(param);
-             int c = param.a + param.b;
+
+            int result = param.a + param.b;
+
+            //Console.WriteLine(param);
+            // int c = param.a + param.b;
+       
 
 
-            return c.ToString();
+
+            return result.ToString();
             //JObject json = new JObject();
             //json = (JObject)value;
 
