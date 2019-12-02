@@ -1,0 +1,10 @@
+C:\Users\1907068\source\repos\RestfulTest\RestfulTest\bin\RestfulTest.dll.config
+C:\Users\1907068\source\repos\RestfulTest\RestfulTest\bin\RestfulTest.dll
+C:\Users\1907068\source\repos\RestfulTest\RestfulTest\bin\RestfulTest.pdb
+C:\Users\1907068\source\repos\RestfulTest\RestfulTest\obj\Debug\RestfulTest.csprojAssemblyReference.cache
+C:\Users\1907068\source\repos\RestfulTest\RestfulTest\obj\Debug\RestfulTest.csproj.CoreCompileInputs.cache
+C:\Users\1907068\source\repos\RestfulTest\RestfulTest\obj\Debug\RestfulTest.dll
+C:\Users\1907068\source\repos\RestfulTest\RestfulTest\obj\Debug\RestfulTest.pdb
+C:\Users\1907068\source\repos\RestfulTest\RestfulTest\bin\Newtonsoft.Json.dll
+C:\Users\1907068\source\repos\RestfulTest\RestfulTest\bin\Newtonsoft.Json.xml
+C:\Users\1907068\source\repos\RestfulTest\RestfulTest\obj\Debug\RestfulTest.csproj.CopyComplete

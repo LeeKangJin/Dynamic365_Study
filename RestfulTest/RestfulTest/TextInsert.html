@@ -1,0 +1,46 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>KangJin 실험실</title>
+
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
+
+    <script language='javascript'>
+
+        
+
+        function bt1_click() {
+
+        
+            var datav = { first: document.getElementById("t1").value, second: document.getElementById("t2").value };
+            //var data_test_string = "" + document.getElementById("t1").value + document.getElementById("t2").value;
+            $.ajax({
+                type: 'POST',
+                url: "http://localhost:64011/Service1.svc/test",
+                data: datav ,//JSON.stringify({ "first": document.getElementById("t1").value, "second": document.getElementById("t2").value }),
+                //contentType: "application/json; charset=utf-8", //" charset=utf-8", 
+                dataType: "JSON",
+                success: function (ret) {
+                    alert("성공");
+                    alert(ret);
+                },
+                error: function (ret) {
+                //    alert(document.getElementById("t1").value);
+                //    alert(document.getElementById("t2").value);
+                    alert(ret.statusText);
+                }
+            })
+        }
+    </script>
+
+
+</head>
+<body>
+    <input id ="t1" type='text' name='first_add'>
+    <input id ="t2" type='text' name='second_add'>
+    
+    <input type="button" name="bt1" value="완료버튼" onclick="bt1_click();" />
+
+</body>
+</html>
