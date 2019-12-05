@@ -27,10 +27,16 @@
             //var data_test_string = "" + document.getElementById("t1").value + document.getElementById("t2").value;
             $.ajax({
                 type: 'POST',
-                url: "http://cellapiexternal.celltrion.com/Service1.svc/GetData",
+                url: "http://cellapiexternal.celltrion.com/CommonService/TestService",
                 data: JSON.stringify(par),                       //JSON.stringify({ "first": document.getElementById("t1").value, "second": document.getElementById("t2").value }),
                 contentType: "application/json; charset=utf-8",
                 dataType: "JSON",
+                //beforeSend: function (xhr) {
+                //    xhr.setRequestHeader("Access-Control-Allow-Origin", "*");
+                //    xhr.setRequestHeader("Access-Control-Allow-Methods", "POST, PUT, DELETE");
+                //    xhr.setRequestHeader("Access-Control-Allow-Headers", "Content-Type, Accept");
+                //    xhr.setRequestHeader("Access-Control-Max-Age", "1728000");
+                //},
                 success: function (ret) {
                     //alert("성공");
                     alert(ret);
@@ -47,8 +53,40 @@
 
 </head>
 <body>
-    <input id="t1" type='text' name='first_add'>
-    <input id="t2" type='text' name='second_add'>
+    <!--<input id="t1" type='text' name='first_add'>
+    <input id="t2" type='text' name='second_add'>-->
+
+    <input id="UR_Code" type='text' value='사용자 코드'>
+    <input id="DN_Code" type='text' value='회사 코드'>
+    <input id="GR_Code" type='text' value='부서 코드'>
+    <input id="LoginID" type='text' value='로그인 아이디'>
+    <input id="EmpNo" type='text' value='사원 번호'>
+    <input id="DisplayName" type='text' value='사용자 이름'>
+    <input id="ExDisplayName" type='text' value='사용자 다국어 이름'>
+    <input id="JobPositionCode" type='text' value='직위 코드'>
+    <input id="JobTitleCode" type='text' value='직책 코드'>
+    <input id="JobLevelCode" type='text' value='직급 코드'>
+    <input id="SortKey" type='text' value='우선 순위'>
+    <input id="IsUse" type='text' value='사용 여부'>
+    <input id="EnterDate" type='text' value='입사일자'>
+    <input id="RetireDate" type='text' value='퇴사일자'>
+    <input id="BirthDiv" type='text' value='양력/음력'>
+    <input id="BirthDate" type='text' value='생년월일'>
+    <input id="PhotoPath" type='text' value='사진경로'>
+    <input id="ExternalMailAddress" type='text' value='외부메일 주소'>
+    <input id="ChargeBusiness" type='text' value='담당 업무'>
+    <input id="PhoneNumberInter" type='text' value='내선번호'>
+    <input id="AD_IsUse" type='text' value='AD 연동여부'>
+    <input id="AD_PhoneNumber" type='text' value='전화번호'>
+    <input id="AD_Mobile" type='text' value='휴대폰'>
+    <input id="AD_Fax" type='text' value='팩스'>
+    <input id="AD_ManagerCode" type='text' value='관리자'>
+    <input id="EX_IsUse" type='text' value='Exchange 연동 여부'>
+    <input id="EX_PrimaryMail" type='text' value='메일 주소'>
+    <!--<input id="ProcessYN" type='text' value='체크 확인 여부'>
+    <input id="CreateOn" type='text' value='생성 일자'>
+    <input id="ProcessComplete" type='text' value='완료 일자 '>-->
+  
 
     <input type="button" name="bt1" value="완료버튼" onclick="bt1_click();" />
 
