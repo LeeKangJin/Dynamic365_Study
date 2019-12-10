@@ -13,32 +13,33 @@
 
 
             var par = {};
-            par.UR_Code = "123456"
-            par.DN_Code = "2000"
-            par.GR_Code = "11111"
+            par.UR_Code = "123456";//확인
+            par.DN_Code = "2000"; //확인
+            par.GR_Code = "11111"; //확인
 
-            par.DisplayName_KR = "오동석"
-            par.DisplayName_EN = "dongsuk.oh"
+            par.DisplayName_KR = "오동석";
+            par.DisplayName_EN = "dongsuk.oh";
 
-            par.JobTitleCode = "1010"
-            par.JobLevelCode = "0004"
+            par.JobTitleCode = "1010"; //확인
+            par.JobLevelCode = "0004"; //확인
 
-            par.SortKey = "1"
-            par.EnterDate = "2005-12-26"
+            par.SortKey = "1";
+            par.EnterDate = "2005-12-26";
 
-            par.RetireDate = ""
-            par.BirthDiv = "S"
+            par.RetireDate = "";
+            par.BirthDiv = "S";//확인
 
-            par.BirthDate = "1991-01-01"
-            par.MailAddress = "dongsuk.oh@celltrionphi.com"
+            par.BirthDate = "1991-01-01";
+            par.MailAddress = "dongsuk.oh@celltrionph.com";// 도메인 확인 해야함 To Do
 
-            par.AdIsUse = "1"
+            //par.AdIsUse = "1"; //제거할것
 
-            par.PhoneNumberInter = "032-850-6500"
-            par.AD_Mobile = "010-1234-1234"
+            par.PhoneNumberInter = "032-850-6500";
+            par.AD_Mobile = "010-1234-1234";
 
-            par.Personal_Info_YN = "1"
-
+            par.Personal_Info_YN =  "1";//확인
+            par.CompanyID = "pharm"; //확인
+            par.CompanyPW = "3195AA9312DBA4C27130CCB72F40CD46A7BB0F9F500162451DB862A019E20D74"; //확인
             //var datav = JSON.stringify({
             //    a:  document.getElementById("t1").value ,
             //    b: document.getElementById("t2").value
@@ -61,7 +62,8 @@
                 //},
                 success: function (ret) {
                     //alert("성공");
-                    alert(ret);
+                    alert(ret.RESULT);
+                    alert(ret.MSG);
                 },
                 error: function (ret) {
                     //    alert(document.getElementById("t1").value);
@@ -78,7 +80,7 @@
     <!--<input id="t1" type='text' name='first_add'>
     <input id="t2" type='text' name='second_add'>-->
 
-    <input id="UR_Code" type='text' value='사용자 코드'>
+    <!--<input id="UR_Code" type='text' value='사용자 코드'>
     <input id="DN_Code" type='text' value='회사 코드'>
     <input id="GR_Code" type='text' value='부서 코드'>
     <input id="LoginID" type='text' value='로그인 아이디'>
@@ -104,7 +106,7 @@
     <input id="AD_Fax" type='text' value='팩스'>
     <input id="AD_ManagerCode" type='text' value='관리자'>
     <input id="EX_IsUse" type='text' value='Exchange 연동 여부'>
-    <input id="EX_PrimaryMail" type='text' value='메일 주소'>
+    <input id="EX_PrimaryMail" type='text' value='메일 주소'>-->
     <!--<input id="ProcessYN" type='text' value='체크 확인 여부'>
     <input id="CreateOn" type='text' value='생성 일자'>
     <input id="ProcessComplete" type='text' value='완료 일자 '>-->
