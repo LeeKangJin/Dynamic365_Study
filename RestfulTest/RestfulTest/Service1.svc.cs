@@ -24,16 +24,9 @@ namespace RestfulTest
         {
 
 
-            int result = param.a + param.b;
-
-            //Console.WriteLine(param);
-            // int c = param.a + param.b;
-       
 
 
-
-            return result.ToString();
-            //JObject json = new JObject();
+            return "";
             //json = (JObject)value;
 
 

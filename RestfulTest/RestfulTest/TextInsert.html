@@ -13,9 +13,31 @@
 
 
             var par = {};
-            par.a = parseInt(document.getElementById("t1").value);
-            par.b = parseInt(document.getElementById("t2").value);
+            par.UR_Code = "123456"
+            par.DN_Code = "2000"
+            par.GR_Code = "11111"
 
+            par.DisplayName_KR = "오동석"
+            par.DisplayName_EN = "dongsuk.oh"
+
+            par.JobTitleCode = "1010"
+            par.JobLevelCode = "0004"
+
+            par.SortKey = "1"
+            par.EnterDate = "2005-12-26"
+
+            par.RetireDate = ""
+            par.BirthDiv = "S"
+
+            par.BirthDate = "1991-01-01"
+            par.MailAddress = "dongsuk.oh@celltrionphi.com"
+
+            par.AdIsUse = "1"
+
+            par.PhoneNumberInter = "032-850-6500"
+            par.AD_Mobile = "010-1234-1234"
+
+            par.Personal_Info_YN = "1"
 
             //var datav = JSON.stringify({
             //    a:  document.getElementById("t1").value ,
@@ -27,7 +49,7 @@
             //var data_test_string = "" + document.getElementById("t1").value + document.getElementById("t2").value;
             $.ajax({
                 type: 'POST',
-                url: "http://cellapiexternal.celltrion.com/CommonService/TestService",
+                url: "http://cellapiexternal.celltrion.com/CommonService/INSERT_HRDATA",
                 data: JSON.stringify(par),                       //JSON.stringify({ "first": document.getElementById("t1").value, "second": document.getElementById("t2").value }),
                 contentType: "application/json; charset=utf-8",
                 dataType: "JSON",
