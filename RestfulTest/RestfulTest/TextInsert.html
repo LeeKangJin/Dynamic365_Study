@@ -29,7 +29,7 @@
             par.RetireDate = "";
             par.BirthDiv = "S";//확인
 
-            par.BirthDate = "1991-01-01";
+            par.BirthDate = "1991-01-0165756757575765";
             par.MailAddress = "dongsuk.oh@celltrionph.com";// 도메인 확인 해야함 To Do
 
             //par.AdIsUse = "1"; //제거할것
@@ -40,34 +40,22 @@
             par.Personal_Info_YN =  "1";//확인
             par.CompanyID = "pharm"; //확인
             par.CompanyPW = "3195AA9312DBA4C27130CCB72F40CD46A7BB0F9F500162451DB862A019E20D74"; //확인
-            //var datav = JSON.stringify({
-            //    a:  document.getElementById("t1").value ,
-            //    b: document.getElementById("t2").value
-            //});
-
-            // second: document.getElementById("t2").value
-
-            //var data_test_string = "" + document.getElementById("t1").value + document.getElementById("t2").value;
+           
             $.ajax({
                 type: 'POST',
                 url: "http://cellapiexternal.celltrion.com/CommonService/INSERT_HRDATA",
                 data: JSON.stringify(par),                       //JSON.stringify({ "first": document.getElementById("t1").value, "second": document.getElementById("t2").value }),
                 contentType: "application/json; charset=utf-8",
                 dataType: "JSON",
-                //beforeSend: function (xhr) {
-                //    xhr.setRequestHeader("Access-Control-Allow-Origin", "*");
-                //    xhr.setRequestHeader("Access-Control-Allow-Methods", "POST, PUT, DELETE");
-                //    xhr.setRequestHeader("Access-Control-Allow-Headers", "Content-Type, Accept");
-                //    xhr.setRequestHeader("Access-Control-Max-Age", "1728000");
+             
                 //},
                 success: function (ret) {
-                    //alert("성공");
+                   
                     alert(ret.RESULT);
                     alert(ret.MSG);
                 },
                 error: function (ret) {
-                    //    alert(document.getElementById("t1").value);
-                    //    alert(document.getElementById("t2").value);
+               
                     alert(ret.statusText);
                 }
             })
