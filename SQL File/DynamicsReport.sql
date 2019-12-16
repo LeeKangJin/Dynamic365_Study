@@ -1,14 +1,27 @@
 
  
+ /*주간보고: 일 월 화 수 목 금 토 추출*/
+--시작일: 지난주 일요일
+IF(@STARTDATE IS NULL)
+BEGIN
+	SET @STARTDATE = CONVERT(DATE,DATEADD(DAY, (DATEPART(WEEKDAY,GETDATE()) + 6) * -1 ,GETDATE()))
+END
+	
+--종료일: 시작일+6일(=지난주 토요일)
+IF(@ENDDATE IS NULL)
+BEGIN
+	SET @ENDDATE = CONVERT(DATE,DATEADD(DAY, 6, DATEADD(DAY, (DATEPART(WEEKDAY,GETDATE()) + 6) * -1 ,GETDATE())))
+END 
 
- 
+
+ -- ? 안돌아감 ?
 --From, To Default 값 설정
-DECLARE @STARTDATE DATE = '2019-11-01', @ENDDATE DATE = '2019-12-14'
+--DECLARE @STARTDATE DATE = '2019-11-01', @ENDDATE DATE = '2019-12-14'
 
-SET @STARTDATE = (SELECT  DATEADD(wk, DATEDIFF(d, 0, getdate()) / 7 -1 , -1)    AS '저번주 일요일(시작)')
-SET @ENDDATE =  (SELECT  DATEADD(wk, DATEDIFF(d, 0, getdate()) / 7 -1 , 5)     AS '저번주 토요일(끝)'   )
+--SET @STARTDATE = (SELECT  DATEADD(wk, DATEDIFF(d, 0, getdate()) / 7 -1 , -1)    AS '저번주 일요일(시작)')
+--SET @ENDDATE =  (SELECT  DATEADD(wk, DATEDIFF(d, 0, getdate()) / 7 -1 , 5)     AS '저번주 토요일(끝)'   )
 
-SELECT @STARTDATE, @ENDDATE
+--SELECT @STARTDATE, @ENDDATE
 
 SELECT                     
             A.AccountId,
@@ -38,4 +51,6 @@ INNER JOIN                    SystemUser                      AS SU    ON I.Owne
 INNER JOIN                    Account                         AS A     ON C.AccountId = A.AccountId
 INNER JOIN                    BusinessUnit                                     AS B     ON B.BusinessUnitId = I.OwningBusinessUnit
 WHERE 1=1
+AND SU.IsDisabled = 0
 AND DATEADD(Hour,9,I.CreatedOn) BETWEEN @STARTDATE AND @ENDDATE
+
