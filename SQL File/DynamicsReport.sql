@@ -1,5 +1,5 @@
 
- 
+ DECLARE @STARTDATE DATE, @ENDDATE DATE
  /*주간보고: 일 월 화 수 목 금 토 추출*/
 --시작일: 지난주 일요일
 IF(@STARTDATE IS NULL)
@@ -13,6 +13,7 @@ BEGIN
 	SET @ENDDATE = CONVERT(DATE,DATEADD(DAY, 6, DATEADD(DAY, (DATEPART(WEEKDAY,GETDATE()) + 6) * -1 ,GETDATE())))
 END 
 
+SELECT CONVERT(DATE,DATEADD(DAY, (DATEPART(WEEKDAY,GETDATE()) + 6) * -1 ,GETDATE()))
 
  -- ? 안돌아감 ?
 --From, To Default 값 설정
