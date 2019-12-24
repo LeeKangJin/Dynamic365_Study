@@ -1,17 +1,22 @@
 
 -- num er 1
 SELECT new_project.new_name
-		,new_dt_exstart
-		,new_dt_exend
-		,new_dt_realstart
-		,new_dt_realend
-		,new_projectdetail.new_d_percentage
+		,CONVERT(CHAR(10),new_dt_exstart,23)
+		,CONVERT(CHAR(10),new_dt_exend,23)
+		,CONVERT(CHAR(10),new_projectdetail.new_dt_start,23)
+		,CONVERT(CHAR(10),new_projectdetail.new_dt_end,23)
+		,CONVERT(CHAR(10),GETDATE(),23)
+		,총분류 = 1
+		,CASE WHEN new_projectdetail.new_d_percentage != 0 THEN 1 ELSE 0 END AS 누적진행cnt
+		,CASE WHEN (new_projectdetail.new_d_percentage != 100 AND new_projectdetail.new_dt_end < CONVERT(CHAR(10),GETDATE(),23) ) THEN 1 ELSE 0 END AS 지연cnt 
 FROM new_project JOIN new_projectdetail ON (new_project.new_projectId = new_projectdetail.new_l_project)
 WHERE new_project.CreatedOn Between '2019-12-01' and '2019-12-20'
 
 
-SELECT DATEADD(s,0,DATEADD(mm, DATEDIFF(m,0,GETDATE()),0))
-SELECT DATEADD(s,-1,DATEADD(mm, DATEDIFF(m,0,GETDATE())+1,0))
+SELECT CONVERT(CHAR(10),DATEADD(s,0,DATEADD(mm, DATEDIFF(m,0,GETDATE()),0)),23) AS FirstDay
+	   ,CONVERT(CHAR(10),DATEADD(s,-1,DATEADD(mm, DATEDIFF(m,0,GETDATE())+1,0)),23) AS LastDay
+	   ,CONVERT(CHAR(10),GETDATE(),23) AS ToDay
+
 
 
 -- number 2
@@ -29,31 +34,11 @@ AND BusinessUnit.Name = 'IT개발팀'
 
 --number 3
 
-SELECT * FROM new_itsupport
-
-SELECT new_l_accountName
-	,Description 
-	,Gro
-	
-	
-FROM task
-
-SELECT * FROM task
-WHERE task.CreatedOn Between '2019-12-01' and '2019-12-20'
-
-
---그룹사 지원
-
-
-SELECT task.Subject, task.Description,task.ActualStart FROM BusinessUnit
+SELECT task.Subject, task.Description,task.ActualStart
+,CASE WHEN task.RegardingObjectTypeCode = 10067 THEN 'IT Support' ELSE '그룹사지원' END AS SupportType FROM BusinessUnit
 JOIN task ON ( BusinessUnit.BusinessUnitId = task.OwningBusinessUnit)
 WHERE Name = 'IT개발팀'
 AND task.CreatedOn Between '2019-12-01' and '2019-12-20'
 AND (task.RegardingObjectTypeCode ='1' OR  task.RegardingObjectTypeCode  ='10067')
 AND task.RegardingObjectIdName != '셀트리온'
 
-
-SELECT * FROM new_itsupport
-
-SELECT * FROM task
-WHERE RegardingObjectTypeCode = '10067'
