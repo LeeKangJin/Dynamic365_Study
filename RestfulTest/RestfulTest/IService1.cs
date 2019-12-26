@@ -30,6 +30,10 @@ namespace RestfulTest
                   ResponseFormat = WebMessageFormat.Json)]
         string test();
 
+        [WebInvoke(UriTemplate = "SEARCH_HRDATA", Method = "POST", RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json)]
+        OUTRequest SEARCH_HRDATA(HROutput output);
+
+
         [OperationContract]
         CompositeType GetDataUsingDataContract(CompositeType composite);
 
