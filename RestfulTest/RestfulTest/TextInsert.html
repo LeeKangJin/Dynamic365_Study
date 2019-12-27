@@ -61,7 +61,8 @@
              
                 //},
                 success: function (ret) {
-                   
+                    var retList = ret.retList;
+                    alert(retList[0]["BirthDate"]);
                     alert(ret.defaultReturn.RESULT);
                     alert(ret.defaultReturn.MSG);
                 },
