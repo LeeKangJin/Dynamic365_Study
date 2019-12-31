@@ -13,13 +13,11 @@
 
             var par = {};
 
-            /* output example */
-            par.UR_Code = "1907068";
+            // update to search text flied
             par.DN_Code = "1000";
             par.CompanyID = "celltrion";
             par.CompanyPW = "97CC62CB8A1E689AB17827290797F8B2DCFF645C76991C8DAEB1C465CE47D715";
-            par.DisplayName_KR = "이강";
-
+            par.Search_Text = "190706";
 
             //var par = {};
             //par.UR_Code = "123456";//확인
@@ -61,8 +59,8 @@
              
                 //},
                 success: function (ret) {
-                    var retList = ret.retList;
-                    alert(retList[0]["BirthDate"]);
+
+                    var list = ret.List;
                     alert(ret.defaultReturn.RESULT);
                     alert(ret.defaultReturn.MSG);
                 },
