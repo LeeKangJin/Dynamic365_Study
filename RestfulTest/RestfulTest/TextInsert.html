@@ -14,44 +14,44 @@
             var par = {};
 
             // update to search text flied
-            par.DN_Code = "1000";
-            par.CompanyID = "celltrion";
-            par.CompanyPW = "97CC62CB8A1E689AB17827290797F8B2DCFF645C76991C8DAEB1C465CE47D715";
-            par.Search_Text = "190706";
+            //par.DN_Code = "1000";
+            //par.CompanyID = "celltrion";
+            //par.CompanyPW = "97CC62CB8A1E689AB17827290797F8B2DCFF645C76991C8DAEB1C465CE47D715";
+            //par.Search_Text = "190706";
 
-            //var par = {};
-            //par.UR_Code = "123456";//확인
-            //par.DN_Code = "2000"; //확인
-            //par.GR_Code = "11111"; //확인
+            var par = {};
+            par.UR_Code = "123456";//확인
+            par.DN_Code = "2000"; //확인
+            par.GR_Code = "11111"; //확인
 
-            //par.DisplayName_KR = "오동석";
-            //par.DisplayName_EN = "dongsuk.oh";
+            par.DisplayName_KR = "오동석";
+            par.DisplayName_EN = "dongsuk.oh";
 
-            //par.JobTitleCode = "1010"; //확인
-            //par.JobLevelCode = "0004"; //확인
+            par.JobTitleCode = "1010"; //확인
+            par.JobLevelCode = "0004"; //확인
 
-            //par.SortKey = "1";
-            //par.EnterDate = "2005-12-266546473";
+            par.SortKey = "1";
+            par.EnterDate = "2005-12-266546473";
 
-            //par.RetireDate = "";
-            //par.BirthDiv = "S";//확인
+            par.RetireDate = "";
+            par.BirthDiv = "S";//확인
 
-            //par.BirthDate = "2001-01-01";
-            //par.MailAddress = "dongsuk.oh@celltrionph.com";// 도메인 확인 해야함 To Do
+            par.BirthDate = "2001-01-01";
+            par.MailAddress = "dongsuk.oh@celltrionph.com";// 도메인 확인 해야함 To Do
 
-            ////par.AdIsUse = "1"; //제거할것
+            //par.AdIsUse = "1"; //제거할것
 
-            //par.PhoneNumberInter = "032-850-6500";
-            //par.AD_Mobile = "010-1234-1234";
+            par.PhoneNumberInter = "032-850-6500";
+            par.AD_Mobile = "010-1234-1234";
 
-            //par.Personal_Info_YN =  "1";//확인
-            //par.CompanyID = "pharm"; //확인
-            //par.CompanyPW = "3195AA9312DBA4C27130CCB72F40CD46A7BB0F9F500162451DB862A019E20D74"; //확인
+            par.Personal_Info_YN =  "1";//확인
+            par.CompanyID = "pharm"; //확인
+            par.CompanyPW = "3195AA9312DBA4C27130CCB72F40CD46A7BB0F9F500162451DB862A019E20D74"; //확인
            
             $.ajax({
                 type: 'POST',
-                url: "http://cellapiexternal.celltrion.com/GwService/SEARCH_HRDATA",
-                //url: "http://localhost:64011/TextInsert.html/SEARCH_HRDATA",
+                //url: "http://cellapiexternal.celltrion.com/GwService/SEARCH_HRDATA",
+                url: "http://cellapiexternal.celltrion.com/GwService/INSERT_HRDATA",
 
                 data: JSON.stringify(par),                       //JSON.stringify({ "first": document.getElementById("t1").value, "second": document.getElementById("t2").value }),
                 contentType: "application/json; charset=utf-8",
@@ -60,9 +60,14 @@
                 //},
                 success: function (ret) {
 
-                    var list = ret.List;
-                    alert(ret.defaultReturn.RESULT);
-                    alert(ret.defaultReturn.MSG);
+                    //var list = ret.List;
+                    //alert(ret.defaultReturn.RESULT);
+                    //alert(ret.defaultReturn.MSG);
+
+
+                    alert(ret.RESULT);
+                    alert(ret.MSG);
+
                 },
                 error: function (ret) {
                
