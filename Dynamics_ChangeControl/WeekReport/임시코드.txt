@@ -1,0 +1,88 @@
+                            //List<Decimal> Days = new List<decimal>();
+                            //int startDay = 0;
+                            //int endDay = 0;
+
+                            //Days = decimalListInit(Days, target);
+
+                            ////무슨 요일이 Start 인지, End 인지 Chk.
+                            //for (int i = 0; i < 5; i++) {
+                            //    if (Days[i] != 0) {
+                            //        startDay = i;
+                            //        break;
+                            //    }
+                            //}
+
+                            //for (int i = 5; i > 0; i--)
+                            //{
+                            //    if (Days[i] != 0)
+                            //    {
+                            //        endDay = i;
+                            //        break;
+                            //    }
+                            //}
+
+
+
+
+
+        public List<Decimal> decimalListInit(List<Decimal> list, Entity target) {
+
+            // 0 - 월 , 1 - 화 , 2 - 수 , 3-목, 4-금 
+            if (target.Contains("new_d_input_expected_monday"))
+            {
+                list.Add(Convert.ToDecimal(target["new_d_input_expected_monday"]));
+            }
+            else
+            {
+                list.Add(Convert.ToDecimal(0));
+            }
+
+            if (target.Contains("new_d_input_expected_tuesday"))
+            {
+                list.Add(Convert.ToDecimal(target["new_d_input_expected_tuesday"]));
+            }
+            else
+            {
+                list.Add(Convert.ToDecimal(0));
+            }
+
+            if (target.Contains("new_d_input_expected_wednesday"))
+            {
+                list.Add(Convert.ToDecimal(target["new_d_input_expected_wednesday"]));
+            }
+            else
+            {
+                list.Add(Convert.ToDecimal(0));
+            }
+
+            if (target.Contains("new_d_input_expected_thursday"))
+            {
+                list.Add(Convert.ToDecimal(target["new_d_input_expected_thursday"]));
+            }
+            else
+            {
+                list.Add(Convert.ToDecimal(0));
+            }
+
+            if (target.Contains("new_d_input_expected_monday"))
+            {
+                list.Add(Convert.ToDecimal(target["new_d_input_expected_monday"]));
+            }
+            else
+            {
+                list.Add(Convert.ToDecimal(0));
+            }
+
+            if (target.Contains("new_d_input_expected_friday"))
+            {
+                list.Add(Convert.ToDecimal(target["new_d_input_expected_friday"]));
+            }
+            else
+            {
+                list.Add(Convert.ToDecimal(0));
+            }
+
+            
+
+            return list;
+        }
