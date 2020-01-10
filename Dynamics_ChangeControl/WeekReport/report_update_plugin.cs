@@ -20,7 +20,7 @@ namespace CellCrmVSSolution1.CellCRMPlugin
     /// <summary>
     /// PreOperationnew_weekly_reportUpdate Plugin.
     /// </summary>    
-    public class PreOperationnew_weekly_reportUpdate : PluginBase
+    public class PreOperationnew_weekly_reportUpdate: PluginBase
     {
 
         private static readonly object SyncLock = new object();
@@ -34,8 +34,8 @@ namespace CellCrmVSSolution1.CellCRMPlugin
         public PreOperationnew_weekly_reportUpdate(string unsecure, string secure)
             : base(typeof(PreOperationnew_weekly_reportUpdate))
         {
-
-            // TODO: Implement your custom configuration handling.
+            
+           // TODO: Implement your custom configuration handling.
         }
 
 
@@ -57,7 +57,7 @@ namespace CellCrmVSSolution1.CellCRMPlugin
         protected override void ExecuteCrmPlugin(LocalPluginContext localContext)
         {
 
-
+        
             if (localContext == null)
             {
                 throw new InvalidPluginExecutionException("localContext");
@@ -79,73 +79,162 @@ namespace CellCrmVSSolution1.CellCRMPlugin
                     {
                         if (context.InputParameters["Target"] is Entity)
                         {
-
-
+                            
 
                             Entity target = (Entity)context.InputParameters["Target"];
-
-                            throw new InvalidPluginExecutionException(target.Contains("new_projectdetail_update_flag").ToString());
-
+                
                             #region Update Flag
                             if (target.Contains("new_projectdetail_update_flag"))
                             {
-
+                                
                                 Entity reportdetail = new Entity("new_weekly_report_detail");
 
-                                //if (target.Contains("new_d_input_expected_monday"))
-                                //{
-                                //    reportdetail["new_d_input_expected_monday"] = Convert.ToDecimal(target["new_d_input_expected_monday"]);
-                                //}
-                                //else
-                                //{
-                                //    reportdetail["new_d_input_expected_monday"] = Convert.ToDecimal(0);
-                                //}
-                                //if (target.Contains("new_d_input_expected_tuesday"))
-                                //{
-                                //    reportdetail["new_d_input_expected_tuesday"] = Convert.ToDecimal(target["new_d_input_expected_tuesday"]);
-                                //}
-                                //else
-                                //{
-                                //    reportdetail["new_d_input_expected_tuesday"] = Convert.ToDecimal(0);
-                                //}
-                                //if (target.Contains("new_d_input_expected_wednesday"))
-                                //{
-                                //    reportdetail["new_d_input_expected_wednesday"] = Convert.ToDecimal(target["new_d_input_expected_wednesday"]);
-                                //}
-                                //else
-                                //{
-                                //    reportdetail["new_d_input_expected_wednesday"] = Convert.ToDecimal(0);
-                                //}
-                                //if (target.Contains("new_d_input_expected_thursday"))
-                                //{
-                                //    reportdetail["new_d_input_expected_thursday"] = Convert.ToDecimal(target["new_d_input_expected_thursday"]);
-                                //}
-                                //else
-                                //{
-                                //    reportdetail["new_d_input_expected_thursday"] = Convert.ToDecimal(0);
-                                //}
-                                //if (target.Contains("new_d_input_expected_friday"))
-                                //{
-                                //    reportdetail["new_d_input_expected_friday"] = Convert.ToDecimal(target["new_d_input_expected_friday"]);
-                                //}
-                                //else
-                                //{
-                                //    reportdetail["new_d_input_expected_friday"] = Convert.ToDecimal(0);
-                                //}
+                                if (target.Contains("new_d_input_expected_monday"))
+                                {
+                                    reportdetail["new_d_input_expected_monday"] = Convert.ToDecimal(target["new_d_input_expected_monday"]);
+                                }
+                                else
+                                {
+                                    reportdetail["new_d_input_expected_monday"] = Convert.ToDecimal(0);
+                                }
+                                if (target.Contains("new_d_input_expected_tuesday"))
+                                {
+                                    reportdetail["new_d_input_expected_tuesday"] = Convert.ToDecimal(target["new_d_input_expected_tuesday"]);
+                                }
+                                else
+                                {
+                                    reportdetail["new_d_input_expected_tuesday"] = Convert.ToDecimal(0);
+                                }
+                                if (target.Contains("new_d_input_expected_wednesday"))
+                                {
+                                    reportdetail["new_d_input_expected_wednesday"] = Convert.ToDecimal(target["new_d_input_expected_wednesday"]);
+                                }
+                                else
+                                {
+                                    reportdetail["new_d_input_expected_wednesday"] = Convert.ToDecimal(0);
+                                }
+                                if (target.Contains("new_d_input_expected_thursday"))
+                                {
+                                    reportdetail["new_d_input_expected_thursday"] = Convert.ToDecimal(target["new_d_input_expected_thursday"]);
+                                }
+                                else
+                                {
+                                    reportdetail["new_d_input_expected_thursday"] = Convert.ToDecimal(0);
+                                }
+                                if (target.Contains("new_d_input_expected_friday"))
+                                {
+                                    reportdetail["new_d_input_expected_friday"] = Convert.ToDecimal(target["new_d_input_expected_friday"]);
+                                }
+                                else
+                                {
+                                    reportdetail["new_d_input_expected_friday"] = Convert.ToDecimal(0);
+                                }
 
-                                var log = target.Contains("new_d_input_expected_friday").ToString();
-                                var log2 = target.Contains("new_d_input_expected_monday").ToString();
-                                throw new InvalidPluginExecutionException(log + "_" + log2);
+
+                                // retreive using guid ( master entity : summary ) 
+                                Entity report = service.Retrieve("new_weekly_report", target.Id, new Microsoft.Xrm.Sdk.Query.ColumnSet(
+                                    "new_d_expected_monday_sum",
+                                    "new_d_expected_tuesday_sum",
+                                    "new_d_expected_wednesday_sum",
+                                    "new_d_expected_thursday_sum",
+                                    "new_d_expected_friday_sum",
+                                    "new_p_division",
+                                    "new_l_related_project_detail",
+                                    "new_l_related_account",
+                                    "new_l_related_appservice",
+                                    "new_l_related_it_support"
+                                    ));
+
+
+
+                                //주간업무보고 상세 세팅
+
+                                //Look up 설정 
+                                reportdetail["new_l_weekly_report"] = new EntityReference("new_weekly_report", new Guid(target.Id.ToString()));
+
+                                //구분 값 설정 
+                                if (report.Contains("new_p_division"))
+                                {
+                                    var temp = ((OptionSetValue)report["new_p_division"]).Value;
+
+                                    reportdetail["new_p_division"] = new OptionSetValue(Convert.ToInt32(temp));
+
+                                }
+
+
+                                ////프로젝트 세부 정보 설정
+                                if (report.Contains("new_l_related_project_detail"))
+                                {
+
+                                    reportdetail["new_l_related_project_detail"] = new EntityReference("new_projectdetail", ((EntityReference)report["new_l_related_project_detail"]).Id);
+
+
+                                }
+
+                                if (report.Contains("new_l_related_it_support"))
+                                {
+                                    reportdetail["new_l_related_it_support"] = new EntityReference("new_itsupport", ((EntityReference)report["new_l_related_it_support"]).Id);
+
+                                }
+
+                                if (report.Contains("new_l_related_app_service"))
+                                {
+                                    reportdetail["new_l_related_app_service"] = new EntityReference("new_appservice", ((EntityReference)report["new_l_related_app_service"]).Id);
+
+                                }
+
+                                if (report.Contains("new_l_related_account"))
+                                {
+                                    reportdetail["new_l_related_account"] = new EntityReference("account", ((EntityReference)report["new_l_related_account"]).Id);
+
+                                }
+
+
 
                                 service.Create(reportdetail);
+                       
+                                //if have null in report value, make 0
 
-
-
-                                target["new_d_input_expected_monday"] = null;
-                                target["new_d_input_expected_tuesday"] = null;
-                                target["new_d_input_expected_wednesday"] = null;
+                                if (!report.Contains("new_d_expected_monday_sum") ) { 
+                                    report["new_d_expected_monday_sum"] = new Decimal(0);
+                                }
+                                if (!report.Contains("new_d_expected_tuesday_sum"))
+                                {
+                                    report["new_d_expected_tuesday_sum"] = new Decimal(0);
+                                }
+                                if (!report.Contains("new_d_expected_wednesday_sum"))
+                                {
+                                    report["new_d_expected_wednesday_sum"] = new Decimal(0);
+                                }
+                                if (!report.Contains("new_d_expected_thursday_sum"))
+                                {
+                                    report["new_d_expected_thursday_sum"] = new Decimal(0);
+                                }
+                                if (!report.Contains("new_d_expected_friday_sum"))
+                                {
+                                    report["new_d_expected_friday_sum"] = new Decimal(0);
+                                }
+                             
+                                target["new_d_expected_monday_sum"]    = (Decimal)report["new_d_expected_monday_sum"] + (Decimal)reportdetail["new_d_input_expected_monday"];
+                                target["new_d_expected_tuesday_sum"]   = (Decimal)report["new_d_expected_tuesday_sum"] + (Decimal)reportdetail["new_d_input_expected_tuesday"];
+                                target["new_d_expected_wednesday_sum"] = (Decimal)report["new_d_expected_wednesday_sum"] + (Decimal)reportdetail["new_d_input_expected_wednesday"];
+                                target["new_d_expected_thursday_sum"]  = (Decimal)report["new_d_expected_thursday_sum"] + (Decimal)reportdetail["new_d_input_expected_thursday"];
+                                target["new_d_expected_friday_sum"]    = (Decimal)report["new_d_expected_friday_sum"] + (Decimal)reportdetail["new_d_input_expected_friday"];
+                                
+                                
+                                target["new_d_input_expected_monday"]   = null;
+                                target["new_d_input_expected_tuesday"]   = null;
+                                target["new_d_input_expected_wednesday"]     = null;
                                 target["new_d_input_expected_thursday"] = null;
                                 target["new_d_input_expected_friday"] = null;
+
+
+                                target["new_p_division"]                             = null;
+                                target["new_l_related_project_detail"]               = null;
+                                target["new_l_related_it_support"]                   = null;
+                                target["new_l_related_app_service"]                  = null;
+                                target["new_l_related_account"]                      = null;
+
                                 target["new_projectdetail_update_flag"] = false;
                                 context.InputParameters["Target"] = target;
 
@@ -160,7 +249,7 @@ namespace CellCrmVSSolution1.CellCRMPlugin
 
 
                     }
-
+                    
                 }
             }
             catch (Exception ex)
