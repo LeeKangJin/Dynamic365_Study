@@ -1,0 +1,91 @@
+
+                            Entity target = (Entity)context.InputParameters["Target"];
+
+                            //retreive (target.id)
+                            Entity reportDetail = service.Retrieve("new_weekly_report_detail", target.Id, new Microsoft.Xrm.Sdk.Query.ColumnSet(true
+                                //"new_l_task",
+                                //"new_i_week",
+                                ));
+
+
+                            if (reportDetail.Contains("new_l_task")) {
+
+                                // Function 화
+                                EntityReference task = new EntityReference("task", (((EntityReference)reportDetail["new_l_task"]).Id));
+                                ConditionExpression ce = new ConditionExpression(); //  task 이름이랑 같은 값이 주간업무보고에 포함되어 있는지
+                                ce.AttributeName = "new_l_task";
+                                ce.Operator = ConditionOperator.Equal;
+                                ce.Values.Add(task);
+
+                                FilterExpression fe = new FilterExpression();
+                                fe.Conditions.Add(ce);
+
+                                QueryExpression qe = new QueryExpression("new_weekly_report_detail");
+                                qe.ColumnSet.AddColumns("new_l_task");
+                                qe.Criteria.AddFilter(fe);
+
+                                EntityCollection ec = service.RetrieveMultiple(qe);
+
+                                if (ec.Entities.Count == 1)
+                                {
+                                    // just update
+                                //    task["scheduledend"]
+                                //    task["scheduledstart"]
+                                //    task["actualdurationminutes"]
+                                //    task["regardingobjectid"]
+
+                                }
+                                else {
+
+                                    int min = Convert.ToInt32(reportDetail["new_i_week"]);
+                                    int max = Convert.ToInt32(reportDetail["new_i_week"]);
+                                    int my  = Convert.ToInt32(reportDetail["new_i_week"]);
+                                    foreach (var anotherDetail in ec.Entities) {
+
+                                        Entity anoterRpoertDetail = service.Retrieve("new_weekly_report_detail", anotherDetail.Id, new Microsoft.Xrm.Sdk.Query.ColumnSet(true
+                                            // 필요한 INDEX 만 뽑기                                            
+                                            ));
+                                        // 1안 index 숫자 가져와서
+                                        // for문 두번 돌면서 min인지 max인지 측정 . 
+
+                                        if (max < Convert.ToInt32(anoterRpoertDetail["new_i_week"]))
+                                        {
+                                            max = Convert.ToInt32(anoterRpoertDetail["new_i_week"]);
+                                        }
+
+                                        if (min < Convert.ToInt32(anoterRpoertDetail["new_i_week"]))
+                                        {
+                                            min = Convert.ToInt32(anoterRpoertDetail["new_i_week"]);
+                                        }
+                                    }
+                                    if (my == max)
+                                    {
+                                        //task update with d
+                                        
+                                    }
+                                    else if (my == max)
+                                    {
+                                        //tash update with s
+                                        
+                                    }
+                                    else {
+                                        //task update only int
+                                    }
+
+
+                                }
+                            }
+
+                            //자신과 같은 작업을 가진, 다른 상세들 가져오기, (Entity)로 -> * Function 화 필요 * (F1)
+
+                            //해당 Enttiy의 부모들을 가져오기
+
+                            //개수가 1개이면 그냥 업데이트
+
+
+                            //개수가 2개 이상이면 아래 로직 -> 이것도 Function화 필요 
+
+                            //자기 자신이 가장 늦은주 ( 전주가 없다 ) -> S
+                            //자기 자신이 가장 늦은주 X(전주가 있다) 
+                            //자기 자신이 가장 빠른주 O (후주가 없다) -> D
+                            //자기 자신이 가장 빠른주 X ( 중간이다 ) -> 기간만 반환
