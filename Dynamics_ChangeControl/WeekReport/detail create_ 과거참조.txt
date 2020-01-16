@@ -1,0 +1,122 @@
+       if (context.InputParameters["Target"] is Entity)
+                        {
+                            Entity target = (Entity)context.InputParameters["Target"];
+                            Entity report_detail = service.Retrieve("new_weekly_report_detail", target.Id, new Microsoft.Xrm.Sdk.Query.ColumnSet(true));
+
+                            Double monday = Convert.ToDouble(report_detail["new_d_input_expected_monday"]);
+                            Double tuesday = Convert.ToDouble(report_detail["new_d_input_expected_tuesday"]);
+                            Double wednesday = Convert.ToDouble(report_detail["new_d_input_expected_wednesday"]);
+                            Double thursday = Convert.ToDouble(report_detail["new_d_input_expected_thursday"]);
+                            Double friday = Convert.ToDouble(report_detail["new_d_input_expected_friday"]);
+
+                            Double[] timeList = { monday, tuesday, wednesday, thursday, friday };
+
+                            int startDay = -1;
+                            int endDay = -1;
+
+                            //paraell 가능 코드 
+                            for (int i = 0; i < 5; i++)
+                            {
+                                if (timeList[i] != 0)
+                                {
+                                    startDay = i;
+                                    break;
+                                }
+                            }
+
+                            for (int i = 4; i > -1; i--)
+                            {
+                                if (timeList[i] != 0)
+                                {
+                                    endDay = i;
+                                    break;
+                                }
+                            }
+
+                            var year = Convert.ToInt32(report_detail["new_i_year"]);
+                            var month = Convert.ToInt32(report_detail["new_i_month"]);
+                            var week = Convert.ToInt32(report_detail["new_i_week"]) - 1;
+
+                            DateTime firstdateofyear = new DateTime(year, month, 1);
+                            DateTime firstdateoffirstweek = firstdateofyear.AddDays(7 - (int)(firstdateofyear.DayOfWeek) + 1);
+                            DateTime startdatetime = firstdateoffirstweek.AddDays(7 * (week - 1) + startDay);
+                            DateTime enddatetime = firstdateoffirstweek.AddDays(7 * (week - 1) + endDay);
+
+                            double timesize = monday + tuesday + wednesday + thursday + friday;
+
+                            Entity task = new Entity("task");
+
+
+                            task["scheduledstart"] = startdatetime.addhours(9);
+                            task["scheduledend"] = enddatetime.addhours(9);
+                            task["actualdurationminutes"] = convert.toint32(timesize);
+
+                            //throw new invalidpluginexecutionexception(startdatetime.tostring() +task["scheduledstart"].tostring());
+
+                            //look up 설정 코드 ( 업무 master 나오면 추가 할 것 to do ) - 멀티 룩업에 어떻게 세팅 하는지 확인 해야 함. 
+                            //task["regardingobjectid"] = // 필드에 따라 세팅 
+
+                            var defaultvalue = 100000000;
+
+                            // type 확인 
+                            target["new_dt_start"] = (datetime)startdatetime;
+                            target["new_dt_end"] = (datetime)enddatetime;
+
+                            if (startday != -1)
+                            {
+                                target["new_p_startday"] = new optionsetvalue(startday + defaultvalue);
+                            }
+                            if (endday != -1)
+                            {
+                                target["new_p_endday"] = new optionsetvalue(endday + defaultvalue);
+                            }
+                            var stringret = "";
+                            if (report_detail.contains("new_txt_subject"))
+                            {
+                                stringret = report_detail["new_txt_subject"].tostring();
+                            }
+                            else if (target.contains("new_txt_subject"))
+                            {
+                                stringret = target["new_txt_subject"].tostring();
+                            }
+                            else
+                            {
+                                stringret = "제목없음";
+
+                            }
+                            task["subject"] = stringret;
+
+                            queryexpression qe = new queryexpression("task");
+                            qe.columnset.addcolumns("scheduledstart", "scheduledend", "subject");
+                            qe.criteria.addfilter(new filterexpression());
+                            qe.criteria.filters[0].addcondition("scheduledstart", conditionoperator.equal, startdatetime); // 년도 비교
+                            qe.criteria.filters[0].addcondition("scheduledend", conditionoperator.equal, enddatetime); // 월 비교
+                            qe.criteria.filters[0].addcondition("subject", conditionoperator.equal, stringret); // 주차 비교
+                            qe.criteria.filters[0].filteroperator = logicaloperator.and;
+
+                            entitycollection ec = service.retrievemultiple(qe);
+
+                            int count = 0;
+
+                            foreach (var j in ec.entities)
+                            {
+                                count++;
+                            }
+
+                            if (count == 0)
+                            {
+                                target["new_dt_start"] = startdatetime;
+                                target["new_dt_end"] = enddatetime;
+
+                                target["new_p_startday"] = new optionsetvalue(startday + defaultvalue);
+                                target["new_p_endday"] = new optionsetvalue(endday + defaultvalue);
+
+
+                                target["new_l_task"] = new entityreference("new_report_detail", service.create(task));
+
+                                context.inputparameters["target"] = target;
+                            }
+
+
+
+                        }
