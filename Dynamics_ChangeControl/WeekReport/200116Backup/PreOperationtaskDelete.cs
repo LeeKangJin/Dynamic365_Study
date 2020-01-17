@@ -38,6 +38,9 @@ namespace CellCrmVSSolution1.CellCRMPlugin
                             Guid retrieve_context_project_id = retrieve_context.GetAttributeValue<EntityReference>("new_l_project").Id;
 
                             Entity new_project = new Entity("new_weekly_report", ((EntityReference)retrieve_context["new_l_project"]).Id);
+
+
+
                         }
                     }
                 }
