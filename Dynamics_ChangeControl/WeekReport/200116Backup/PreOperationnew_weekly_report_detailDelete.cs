@@ -70,11 +70,15 @@ namespace CellCrmVSSolution1.CellCRMPlugin
                 {
                     lock (SyncLock)
                     {
-                        if (context.InputParameters["Target"] is Entity)
+
+                        if (context.Depth < 2)
                         {
-                            Entity target = (Entity)context.InputParameters["Target"];
+                            if (context.InputParameters["Target"] is Entity)
+                            {
+                                Entity target = (Entity)context.InputParameters["Target"];
 
 
+                            }
                         }
                     }
                 }

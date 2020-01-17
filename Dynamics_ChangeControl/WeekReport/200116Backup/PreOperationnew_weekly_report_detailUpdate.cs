@@ -79,9 +79,7 @@ namespace CellCrmVSSolution1.CellCRMPlugin
 
             task["scheduledstart"] = report_stanard.AddDays(day + 1);
             task["scheduledend"] = report_stanard.AddDays(day + 1);
-
-            //actual , expect가 -1일 경우 target이 없는 것으로 update, create시 보내주지 않음. 
-
+            
             if (target.Contains(expectName[day])) {
                 task["expectminutes"] = target[expectName[day]];
             }
@@ -274,6 +272,10 @@ namespace CellCrmVSSolution1.CellCRMPlugin
                                     
 
                                 }
+                                #endregion
+
+                                #region 주간 Master 업데이트 - To Do 
+
                                 #endregion
 
                                 #region Repeat 기능 구현 -To Do

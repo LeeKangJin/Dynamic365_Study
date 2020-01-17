@@ -76,13 +76,7 @@ namespace CellCrmVSSolution1.CellCRMPlugin
                         {
                             Entity target = (Entity)context.InputParameters["Target"];
                             //월~금 데이터 가져오기 위한 report detail retrieve
-                            Entity report_detail = service.Retrieve("new_weekly_report_detail", target.Id, new Microsoft.Xrm.Sdk.Query.ColumnSet(
-                                "new_d_input_expected_monday",
-                                "new_d_input_expected_tuesday",
-                                "new_d_input_expected_wednesday",
-                                "new_d_input_expected_thursday",
-                                "new_d_input_expected_friday",
-                                "new_p_repeat"
+                            Entity report_detail = service.Retrieve("new_weekly_report_detail", target.Id, new Microsoft.Xrm.Sdk.Query.ColumnSet(true
                                 ));
                             Entity report = new Entity();
 
@@ -118,13 +112,20 @@ namespace CellCrmVSSolution1.CellCRMPlugin
                             DateTime firstdateoffirstweek = firstdateofyear.AddDays(7 - (int)(firstdateofyear.DayOfWeek) + 1);
                        
                             for (int i = 0; i < 5; i++) {
+
                                 if (timeList[i] != 0) {
 
+                                    //task 세팅
                                     Entity task = new Entity("task");
 
-                                   
-                                    //마스터 기준 날짜 생성 완료시 날짜 생성 공식 제거 To Do 
+                                    //new name은 work flow 여서 늦게 올라올 수 있음. 
+                                    task["subject"] = report_detail["new_name"];
 
+                                    task["description"] = report_detail["new_txt_subject"];
+
+
+                                    //마스터 기준 날짜 생성 완료시 날짜 생성 공식 제거 To Do 
+                                    
                                     //날짜 생성 공식 사용
                                     DateTime datetime = firstdateoffirstweek.AddDays(7 * (week - 1) + i);
 
