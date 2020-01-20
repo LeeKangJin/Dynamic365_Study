@@ -5,6 +5,12 @@
   I'm Kangjin Lee in South Korea. The Sofeware Engineer  
   If you have any question of this page please contact me - himnae5181@naver.com  
   
+- 안녕하세요 ! D365 개발 노트 입니다.
+
+  한국어로된 D365 개발 관련 노트가 적어 올려봅니다. 
+
+  아직 문서가 많이 없지만 차근차근 늘려가 보도록 하겠습니다.
+  
 ## 2. Dynamics Tutorial
 - [learning page](https://docs.microsoft.com/ko-kr/learn/browse/?term=dynamic%20365)
 
