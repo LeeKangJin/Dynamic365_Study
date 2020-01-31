@@ -1,0 +1,87 @@
+
+$ = parent.$;
+//addCustomFilter 사용법
+
+//https://docs.microsoft.com/en-us/powerapps/developer/model-driven-apps/clientapi/reference/controls/addcustomfilter
+
+
+function OnChangeProject() {
+   
+    var project_detail = Xrm.Page.getAttribute("new_l_related_project_detail").getValue();
+
+   
+    if (project_detail != null) { Xrm.Page.getAttribute("new_l_related_project_detail").setValue(null); }
+
+    Xrm.Page.getControl("new_l_related_project_detail").addPreSearch(addFilterProject);
+
+
+}
+
+function OnChangeBig() {
+
+        var master_mid = Xrm.Page.getAttribute("new_l_work_master2").getValue();
+        var master_small = Xrm.Page.getAttribute("new_l_work_master3").getValue();
+
+            if (master_mid != null) {
+                Xrm.Page.getAttribute("new_l_work_master2").setValue(null);
+            }
+
+            if (master_small != null) {
+                Xrm.Page.getAttribute("new_l_work_master3").setValue(null);
+
+            }
+
+    Xrm.Page.getControl("new_l_work_master2").addPreSearch(addFilterBig);
+
+      
+    
+        //만약 대를 바꿧는데 중이 있다면 중소 null 처리
+        //만약 중을 바꿧는데 소가 있다면 소 null 처리
+        // ? 소 null 처리는 고민 좀. 
+    
+
+}
+
+function OnChangeMid() {
+
+    var master_small = Xrm.Page.getAttribute("new_l_work_master3").getValue();
+
+    if (master_small != null) {
+        Xrm.Page.getAttribute("new_l_work_master3").setValue(null);
+    }
+
+    Xrm.Page.getControl("new_l_work_master3").addPreSearch(addFilterMid);
+
+}
+
+function addFilterMid() {
+
+    var master_mid = Xrm.Page.getAttribute("new_l_work_master2").getValue();
+
+    fetchXml = "<filter type='and'><condition attribute='new_l_work_master2' operator='eq' value='" + master_mid[0]['id'] + "'/></filter>";
+    
+    Xrm.Page.getControl("new_l_work_master3").addCustomFilter(fetchXml);
+
+}
+
+function addFilterBig() {
+
+    var master_big = Xrm.Page.getAttribute("new_l_work_master1").getValue();
+
+        fetchXml = "<filter type='and'><condition attribute='new_l_work_master1' operator='eq' value='" + master_big[0]['id'] + "'/></filter>";
+
+
+        Xrm.Page.getControl("new_l_work_master2").addCustomFilter(fetchXml);
+
+}
+
+function addFilterProject() {
+
+    var project = Xrm.Page.getAttribute("new_l_project").getValue();
+
+    fetchXml = "<filter type='and'><condition attribute='new_l_project' operator='eq' value='" + project[0]['id'] + "'/></filter>";
+
+
+    Xrm.Page.getControl("new_l_related_project_detail").addCustomFilter(fetchXml);
+
+}
