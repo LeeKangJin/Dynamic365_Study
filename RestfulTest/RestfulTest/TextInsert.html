@@ -20,38 +20,39 @@
             //par.Search_Text = "190706";
 
             var par = {};
-            par.UR_Code = "123456";//확인
-            par.DN_Code = "2000"; //확인
-            par.GR_Code = "11111"; //확인
+            //필수 값
+            par.UR_Code = "99999";//확인
+            par.DN_Code = "4000"; //확인
+            par.GR_Code = "4000"; //확인
 
-            par.DisplayName_KR = "오동석";
-            par.DisplayName_EN = "dongsuk.oh";
+            par.DisplayName_KR = "메이웨더";
+            par.DisplayName_EN = "meiwheder";
 
-            par.JobTitleCode = "1010"; //확인
-            par.JobLevelCode = "0004"; //확인
+            par.JobTitleCode = ""; //확인
+            par.JobLevelCode = "L120"; //확인
 
-            par.SortKey = "1";
-            par.EnterDate = "2005-12-26";
+            par.SortKey = "2";
+            par.EnterDate = "";
 
             par.RetireDate = "";
-            par.BirthDiv = "S";//확인
+            par.BirthDiv = "";//확인
 
-            par.BirthDate = "2001-01-01";
-            par.MailAddress = "dongsuk.oh@celltrionph.com";// 도메인 확인 해야함 To Do
+            par.BirthDate = "";
+            par.MailAddress = "meiwheder@celltrion.com";//
 
             //par.AdIsUse = "1"; //제거할것
 
-            par.PhoneNumberInter = "032-850-6500";
-            par.AD_Mobile = "010-1234-1234";
+            par.PhoneNumberInter = "";
+            par.AD_Mobile = "";
 
             par.Personal_Info_YN =  "1";//확인
-            par.CompanyID = "celltrion_pharm"; //확인
-            par.CompanyPW = "3195AA9312DBA4C27130CCB72F40CD46A7BB0F9F500162451DB862A019E20D74"; //확인
-           
+            par.CompanyID = "celltrion_holdings"; //확인
+            par.CompanyPW = "E48B7ED4E7CF33EE81510DD786065F9FC085230747F905CC9E656BE9F8F7C39C"; //확인
+            
             $.ajax({
                 type: 'POST',
                 //url: "http://cellapiexternal.celltrion.com/GwService/SEARCH_HRDATA",
-                url: "http://cellapiexternal.celltrion.com/GwService/INSERT_HRDATA",
+                url: "http://cellapi.azurewebsites.net/GwService/INSERT_HRDATA",
 
                 data: JSON.stringify(par),                       //JSON.stringify({ "first": document.getElementById("t1").value, "second": document.getElementById("t2").value }),
                 contentType: "application/json; charset=utf-8",
@@ -70,7 +71,9 @@
 
                 },
                 error: function (ret) {
-               
+
+                    alert(ret.RESULT);
+                    alert(ret.MSH);
                     alert(ret.statusText);
                 }
             })
