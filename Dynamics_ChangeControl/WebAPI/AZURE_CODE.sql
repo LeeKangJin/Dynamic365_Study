@@ -11,14 +11,6 @@ Date : 2020 - 02 - 06
 Description : Insert API Celltrion.
 -- =============================================
 
---소속회사 존재 X
---부서존재 X
---직급존재 X
---직책존재 X
---Optionset 범위 벗어남
-
--- 담당 업무는 어떻게 되는 건지?
-
                          1			2		3			5			6				7		8		9		10				11	12		13              14						15		16				17					18           
 EXEC dbo.HR_DATA_INSERT '234513',	'4635356',	'11111',	'오동석',	'dongseok.oh',	'1010',	'0004',	'1',	'2005-12-26',	'',	'S',	'1994-06-14',	'dsoh@celltrionph.com',	'Y',	'032-850-3897',	'010-2156-7894',	'Y'
 - 없는 그룹사
@@ -38,7 +30,7 @@ SELECT * FROM HRTemp_TB
 */
 
 
-ALTER PROCEDURE [dbo].[HR_DATA_INSERT]
+CREATE PROCEDURE [dbo].[HR_DATA_INSERT]
 		/*주석추가*/
         @UR_Code VARCHAR(50),				-- 1.사번 :              
         @DN_Code VARCHAR(50),				-- 2.그룹사코드
@@ -118,8 +110,9 @@ BEGIN
 			@RESULT != 0
 		    AND
 			((SELECT COUNT(*) FROM [AZURE].[CelltrionAzureDB].[dbo].[GW_BASE_OBJECT_GR] AS JOBTITLE
-             WHERE JOBTITLE.ENT_CODE = @DN_Code
-            AND JOBTITLE.TITLE_CODE LIKE @JobTitleCode +'_%'
+             WHERE JOBTITLE.DN_Code = @DN_Code
+			 AND JOBTITLE.GroupType = 'JobTitle'
+            AND JOBTITLE.GR_Code LIKE @JobTitleCode +'_%'
             ) = 0) AND @JobTitleCode != '') 
         BEGIN
                  SET @MSG = '입력한 직책 코드가 잘못 되었습니다.'
@@ -139,12 +132,11 @@ BEGIN
 		END
 
 
-
         IF(@RESULT = 1) 
         BEGIN
 		
 
-   INSERT INTO COVI_SYNCDATA.dbo.HRTemp_TB(
+   INSERT INTO [AZURE].[CelltrionAzureDB].dbo.HRTemp_TB(
 		 UR_Code 
         ,DN_Code			-- 사번
         ,GR_Code			-- 소속 부서 코드

@@ -21,24 +21,24 @@
 
             var par = {};
             //필수 값
-            par.UR_Code = "99999";//확인
-            par.DN_Code = "4000"; //확인
-            par.GR_Code = "4000"; //확인
+            par.UR_Code = "1785421";//확인
+            par.DN_Code = "1000"; //확인
+            par.GR_Code = "10000124"; //확인
 
-            par.DisplayName_KR = "메이웨더";
-            par.DisplayName_EN = "meiwheder";
+            par.DisplayName_KR = "이강진";
+            par.DisplayName_EN = "KangjinLee";
 
             par.JobTitleCode = ""; //확인
-            par.JobLevelCode = "L120"; //확인
+            par.JobLevelCode = "L06"; //확인
 
-            par.SortKey = "2";
+            par.SortKey = "1";
             par.EnterDate = "";
 
             par.RetireDate = "";
             par.BirthDiv = "";//확인
 
             par.BirthDate = "";
-            par.MailAddress = "meiwheder@celltrion.com";//
+            par.MailAddress = "kangjin.lee@celltrion.com";//
 
             //par.AdIsUse = "1"; //제거할것
 
@@ -46,13 +46,17 @@
             par.AD_Mobile = "";
 
             par.Personal_Info_YN =  "1";//확인
-            par.CompanyID = "celltrion_holdings"; //확인
-            par.CompanyPW = "E48B7ED4E7CF33EE81510DD786065F9FC085230747F905CC9E656BE9F8F7C39C"; //확인
-            
+            par.CompanyID = "celltrion_healthcare"; //확인
+            par.CompanyPW = "A605698BB85D261D37840E6B9A58B61198C991C0A0018A765663657B1D7DA82B"; //확인
+          
             $.ajax({
                 type: 'POST',
                 //url: "http://cellapiexternal.celltrion.com/GwService/SEARCH_HRDATA",
-                url: "http://cellapi.azurewebsites.net/GwService/INSERT_HRDATA",
+
+              
+                
+                //url: "http://cellapi.azurewebsites.net/GwService/INSERT_HRDATA",
+                url: "http://cellapidev.azurewebsites.net/GwService/INSERT_HRDATA",
 
                 data: JSON.stringify(par),                       //JSON.stringify({ "first": document.getElementById("t1").value, "second": document.getElementById("t2").value }),
                 contentType: "application/json; charset=utf-8",
@@ -64,8 +68,7 @@
                     //var list = ret.List;
                     //alert(ret.defaultReturn.RESULT);
                     //alert(ret.defaultReturn.MSG);
-
-
+                    
                     alert(ret.RESULT);
                     alert(ret.MSG);
 
