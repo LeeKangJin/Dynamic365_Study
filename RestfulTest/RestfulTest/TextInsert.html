@@ -21,7 +21,7 @@
 
             var par = {};
             //필수 값
-            par.UR_Code = "1785421";//확인
+            par.UR_Code = "19test";//확인
             par.DN_Code = "1000"; //확인
             par.GR_Code = "10000124"; //확인
 
@@ -46,14 +46,13 @@
             par.AD_Mobile = "";
 
             par.Personal_Info_YN =  "1";//확인
-            par.CompanyID = "celltrion_healthcare"; //확인
-            par.CompanyPW = "A605698BB85D261D37840E6B9A58B61198C991C0A0018A765663657B1D7DA82B"; //확인
+            par.CompanyID = "celltrion"; //확인
+            par.CompanyPW = "97CC62CB8A1E689AB17827290797F8B2DCFF645C76991C8DAEB1C465CE47D715"; //확인
           
             $.ajax({
                 type: 'POST',
                 //url: "http://cellapiexternal.celltrion.com/GwService/SEARCH_HRDATA",
-
-              
+                
                 
                 //url: "http://cellapi.azurewebsites.net/GwService/INSERT_HRDATA",
                 url: "http://cellapidev.azurewebsites.net/GwService/INSERT_HRDATA",
