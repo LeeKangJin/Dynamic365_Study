@@ -9,7 +9,10 @@
 
 
 
+
+
         function bt1_click() {
+
 
             var par = {};
 
@@ -21,15 +24,15 @@
 
             var par = {};
             //필수 값
-            par.UR_Code = "19test";//확인
+            par.EmpNo = "123456789";//확인
             par.DN_Code = "1000"; //확인
-            par.GR_Code = "10000124"; //확인
+            par.GR_Code = "10000179"; //확인
 
-            par.DisplayName_KR = "이강진";
-            par.DisplayName_EN = "KangjinLee";
+            par.DisplayName_KR = "셀트리온";
+            par.DisplayName_EN = "Celltrion";
 
-            par.JobTitleCode = ""; //확인
-            par.JobLevelCode = "L06"; //확인
+            par.JobTitleCode = "T02"; //확인
+            par.JobLevelCode = "L13"; //확인
 
             par.SortKey = "1";
             par.EnterDate = "";
@@ -38,7 +41,7 @@
             par.BirthDiv = "";//확인
 
             par.BirthDate = "";
-            par.MailAddress = "kangjin.lee@celltrion.com";//
+            par.MailAddress = "CT@celltrion.com";//
 
             //par.AdIsUse = "1"; //제거할것
 
@@ -80,6 +83,72 @@
                 }
             })
         }
+
+        function bt2_click() {
+
+            var par = {};
+            par.DN_Code = "1000";                  //그룹사 코드
+            par.CompanyID = "celltrion";           //그룹사명 
+            par.CompanyPW = "97CC62CB8A1E689AB17827290797F8B2DCFF645C76991C8DAEB1C465CE47D715"; //그룹사 제공된 일련번호
+            par.Search_Text = "셀";              //부분 검색가능
+
+            $.ajax({
+                type: 'POST',
+                url: "http://cellapidev.azurewebsites.net/GwService/SEARCH_REQUEST_HRDATA",
+                //url: "http://cellapidev.azurewebsites.net /GwService/SEARCH_REQUEST_HRDATA",
+                data: JSON.stringify(par),
+                contentType: "application/json; charset=utf-8",
+                dataType: "JSON",
+
+                success: function (ret) {
+                    /*
+                    결과 예시 코드. 리스트 형식으로 리턴이 됨
+                    아래의 예시는 검색된 유저의 생일을 alert 띄우는 과정.
+                    */
+                    var first_search_birth = ret.List[0]["UR_Code"];
+                    alert(first_search_birth);
+                    alert(ret.defaultReturn.RESULT + ret.defaultReturn.MSG);
+                },
+                error: function (ret) {
+
+                    alert(ret.statusText);
+                }
+            })
+        }
+
+        function bt3_click() {
+
+            var par = {};
+            par.DN_Code = "5000";                  //그룹사 코드
+            par.CompanyID = "celltrion_skincure";           //그룹사명 
+            par.CompanyPW = "44A0B475CCCC546328BE56D8AD2D4559185C4310A32E4A7BB5F58D3C82119EE7"; //그룹사 제공된 일련번호
+            par.Search_Text = "hana";              //부분 검색가능
+
+            $.ajax({
+                type: 'POST',
+                url: "http://cellapidev.azurewebsites.net/GwService/SEARCH_RESULT_HRDATA",
+                //url: "http://cellapidev.azurewebsites.net /GwService/SEARCH_REQUEST_HRDATA",
+                data: JSON.stringify(par),
+                contentType: "application/json; charset=utf-8",
+                dataType: "JSON",
+
+                success: function (ret) {
+                    /*
+                    결과 예시 코드. 리스트 형식으로 리턴이 됨
+                    아래의 예시는 검색된 유저의 생일을 alert 띄우는 과정.
+                    */
+                    var first_search_birth = ret.List[0]["UR_Code"];
+                    alert(first_search_birth);
+                    alert(ret.defaultReturn.RESULT + ret.defaultReturn.MSG);
+                },
+                error: function (ret) {
+
+                    alert(ret.statusText);
+                }
+            })
+        }
+
+
     </script>
 
 
@@ -87,7 +156,6 @@
 <body>
     <!--<input id="t1" type='text' name='first_add'>
     <input id="t2" type='text' name='second_add'>-->
-
     <!--<input id="UR_Code" type='text' value='사용자 코드'>
     <input id="DN_Code" type='text' value='회사 코드'>
     <input id="GR_Code" type='text' value='부서 코드'>
@@ -118,9 +186,10 @@
     <!--<input id="ProcessYN" type='text' value='체크 확인 여부'>
     <input id="CreateOn" type='text' value='생성 일자'>
     <input id="ProcessComplete" type='text' value='완료 일자 '>-->
-  
 
-    <input type="button" name="bt1" value="완료버튼" onclick="bt1_click();" />
 
+    <input type="button" name="bt1" value="삽입버튼" onclick="bt1_click();" />
+    <input type="button" name="bt2" value="찾기버튼" onclick="bt2_click();" />
+    <input type="button" name="bt3" value="결과버튼" onclick="bt3_click();" />
 </body>
 </html>
