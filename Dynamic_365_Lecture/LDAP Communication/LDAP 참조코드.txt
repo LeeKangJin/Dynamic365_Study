@@ -1,0 +1,42 @@
+ #region 1. AD 인증 확인
+            //string strSQL = "";
+            try
+            {
+                using (var ldap = new LdapConnection(domainName))
+                {
+                    var networkCredential = new NetworkCredential(param.ID, param.PW, domainName);
+                    ldap.SessionOptions.VerifyServerCertificate = new VerifyServerCertificateCallback((con, cer) => true);
+                    ldap.SessionOptions.SecureSocketLayer = false;
+                    ldap.SessionOptions.ProtocolVersion = 3;
+                    ldap.AuthType = AuthType.Negotiate;
+                    ldap.Bind(networkCredential);
+                }
+                rtn.RESULT = true;
+                // If the bind succeeds, we have a valid user/pass.                
+            }
+            catch (LdapException ldapEx)
+            {
+                rtn.RESULT = false;
+                rtn.MSG = "ID or PW is incorrect.";
+                // Error Code 0x31 signifies invalid credentials, anything else will be caught outside.
+                if (!ldapEx.ErrorCode.Equals(49))
+                {
+                    rtn.MSG = ldapEx.Message;
+                }
+                //clsLog.Setting_Logger("ESPOC", "GET_AD_LOGIN", "ERROR");
+                //clsLog.Error("[INPUT PARAM]", JsonConvert.SerializeObject(param));
+                //clsLog.Error("[오류정보]", "LdapException:" + rtn.MSG);
+            }
+            catch (Exception err)
+            {
+                rtn.RESULT = false;
+                rtn.MSG = "An unknown error occured when AD connecting ::" + err.Message;
+                if (err.Message.Contains("ID3242"))
+                {
+                    rtn.MSG = "일시적인 통신 문제가 발생하였습니다. 1-2분 후 다시 시도 바랍니다.";
+                }
+                clsLog.Setting_Logger("ESPOC", "GET_AD_LOGIN", "ERROR");
+                //clsLog.Error("[INPUT PARAM]", JsonConvert.SerializeObject(param));
+                clsLog.Error("[오류정보]", "AD Exception:" + rtn.MSG);
+            }
+            #endregion

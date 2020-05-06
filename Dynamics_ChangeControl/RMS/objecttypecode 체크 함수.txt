@@ -1,0 +1,9 @@
+         //참고 코드 (object type 확인 코드) 
+                    //RetrieveEntityRequest request = new RetrieveEntityRequest();
+                    //request.LogicalName = target.LogicalName;
+
+                    //// Retrieve the MetaData.
+                    //RetrieveEntityResponse response = (RetrieveEntityResponse)service.Execute(request);
+                    //int iEntityTypecode = response.EntityMetadata.ObjectTypeCode.Value;
+
+                    //throw new InvalidPluginExecutionException(iEntityTypecode.ToString());
