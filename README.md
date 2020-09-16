@@ -45,5 +45,8 @@
 
 ### Javascript Tip
 
+## 4. Design Patten
+
+- [Design Patten](https://realzero0.github.io/study/2017/06/12/%EB%94%94%EC%9E%90%EC%9D%B8-%ED%8C%A8%ED%84%B4-%EC%A0%95%EB%A6%AC.html)
 
 
