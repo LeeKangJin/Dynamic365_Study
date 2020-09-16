@@ -1,0 +1,107 @@
+ try
+            {
+                IPluginExecutionContext context = localContext.PluginExecutionContext;
+                IOrganizationService service = localContext.OrganizationService;
+                // TODO: Implement your custom Plug-in business logic.
+
+                if (context.Depth < 2)
+                {
+
+                    if (context.InputParameters["Target"] is Entity)
+                    {
+                        Entity target = (Entity)context.InputParameters["Target"];
+                        Entity my = service.Retrieve("new_reservesample", target.Id, new Microsoft.Xrm.Sdk.Query.ColumnSet("new_ntxt_comment"));
+
+                        my["new_ntxt_comment"] = "";
+
+
+
+                     service.Update(my);
+
+                    }
+
+
+
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new InvalidPluginExecutionException("<span style=' font-family: Segoe UI Light, Segoe UI, Tahoma, Arial !important; font-weight: lighter !important;font-size: 27px !important;' >" + ex.Message + "</span>" + "\n");
+
+            }
+
+
+
+
+
+
+
+  try
+            {
+                IPluginExecutionContext context = localContext.PluginExecutionContext;
+                IOrganizationService service = localContext.OrganizationService;
+                // TODO: Implement your custom Plug-in business logic.
+                if (context.Depth < 2)
+                {
+
+                    if (context.InputParameters["Target"] is Entity)
+                    {
+                        Entity target = (Entity)context.InputParameters["Target"];
+                        Entity my = service.Retrieve("new_retainsamplemfg", target.Id, new Microsoft.Xrm.Sdk.Query.ColumnSet("new_ntxt_comment"));
+
+                        my["new_ntxt_comment"] = "";
+
+                        service.Update(my);
+
+                    }
+
+
+
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new InvalidPluginExecutionException("<span style=' font-family: Segoe UI Light, Segoe UI, Tahoma, Arial !important; font-weight: lighter !important;font-size: 27px !important;' >" + ex.Message + "</span>" + "\n");
+
+            }
+
+
+
+
+
+
+            try
+            {
+                IPluginExecutionContext context = localContext.PluginExecutionContext;
+                IOrganizationService service = localContext.OrganizationService;
+                // TODO: Implement your custom Plug-in business logic.
+                if (context.Depth < 2)
+                {
+
+                    if (context.InputParameters["Target"] is Entity)
+                    {
+                        Entity target = (Entity)context.InputParameters["Target"];
+                        Entity my = service.Retrieve("new_retainsamplemfg", target.Id, new Microsoft.Xrm.Sdk.Query.ColumnSet("new_ntxt_comment"));
+
+                        my["new_ntxt_comment"] = "";
+
+                        service.Update(my);
+
+                    }
+
+
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new InvalidPluginExecutionException("<span style=' font-family: Segoe UI Light, Segoe UI, Tahoma, Arial !important; font-weight: lighter !important;font-size: 27px !important;' >" + ex.Message + "</span>" + "\n");
+
+            }
+
+
+
+
+
+
+
+
