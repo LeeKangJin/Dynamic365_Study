@@ -1,0 +1,1691 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <!-- Cache 방지 설정 S ----------------------------------->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1 maximum-scale=1 minimum-scale=1" />
+
+    <META http-equiv="Expires" content="-1" />
+    <META http-equiv="Pragma" content="no-cache" />
+    <META http-equiv="Cache-Control" content="No-Cache" />
+    <!-- Cache 방지 설정 E ----------------------------------->
+    <!--<link href="css/style.css" rel="stylesheet" type="text/css" />-->
+    <link rel="stylesheet" href="https://webresourcedev.celltrion.com/jqwidgets/styles/jqx.base.css" type="text/css" />
+    <link rel="stylesheet" href="https://webresourcedev.celltrion.com/jqwidgets/styles/jqx.energyblue.css" type="text/css" />
+
+
+
+    <script type="text/javascript" src="https://webresourcedev.celltrion.com/scripts/jquery-1.11.1.min.js"></script>
+    <script src="https://webresourcedev.celltrion.com/jqwidgets/jqx-all.js"></script>
+
+    <!--<script type="text/javascript" src="https://webresourcedev.celltrion.com/jqwidgets/jqwidgets/jqxcore.js"></script>
+    <script type="text/javascript" src="https://webresourcedev.celltrion.com/jqwidgets/jqwidgets/jqxdata.js"></script>
+    <script type="text/javascript" src="https://webresourcedev.celltrion.com/jqwidgets/jqwidgets/jqxbuttons.js"></script>
+    <script type="text/javascript" src="https://webresourcedev.celltrion.com/jqwidgets/jqwidgets/jqxscrollbar.js"></script>
+    <script type="text/javascript" src="https://webresourcedev.celltrion.com/jqwidgets/jqwidgets/jqxlistbox.js"></script>
+    <script type="text/javascript" src="https://webresourcedev.celltrion.com/jqwidgets/jqwidgets/jqxmenu.js"></script>
+    <script type="text/javascript" src="https://webresourcedev.celltrion.com/jqwidgets/jqwidgets/jqxgrid.js"></script>
+    <script type="text/javascript" src="https://webresourcedev.celltrion.com/jqwidgets/jqwidgets/jqxgrid.pager.js"></script>
+    <script type="text/javascript" src="https://webresourcedev.celltrion.com/jqwidgets/jqwidgets/jqxgrid.sort.js"></script>
+    <script type="text/javascript" src="https://webresourcedev.celltrion.com/jqwidgets/jqwidgets/jqxgrid.filter.js"></script>
+    <script type="text/javascript" src="https://webresourcedev.celltrion.com/jqwidgets/jqwidgets/jqxgrid.columnsresize.js"></script>
+    <script type="text/javascript" src="https://webresourcedev.celltrion.com/jqwidgets/jqwidgets/jqxgrid.selection.js"></script>
+    <script type="text/javascript" src="https://webresourcedev.celltrion.com/jqwidgets/jqwidgets/jqxpanel.js"></script>-->
+    <!--<script src="/scripts/common.js?ver=180710"></script>-->
+
+
+
+    <style>
+
+        ul li {
+            list-style-type: none;
+            float: left;
+        }
+
+        .Total_Sum_Title {
+            font-size: 13px;
+            text-align: center;
+            padding-top: 10px;
+            font-weight: bold;
+        }
+
+        .Total_Sum_Value_RED {
+            font-size: 13px;
+            text-align: right;
+            padding-top: 10px;
+            padding-right: 5px;
+            font-weight: bold;
+            color: #ff0000;
+        }
+
+        .Total_Sum_Value_BLUE {
+            font-size: 13px;
+            text-align: right;
+            padding-top: 10px;
+            padding-right: 5px;
+            font-weight: bold;
+            color: #0000ff;
+        }
+
+        /*return '<span style="margin: 4px; margin-top:8px; float: ' + columnproperties.cellsalign + '; color: #ff0000;">' + value + '</span>';*/
+        /*return '<span style="margin: 4px; margin-top:8px; float: ' + columnproperties.cellsalign + '; color: #0000ff;">' + value + '</span>';*/
+        .cellRenderColorRED {
+            margin: 4px;
+            margin-top: 8px;
+            float: right;
+            color: #ff0000;
+            /*padding-right: 5px;*/
+        }
+
+        #datalist-checkall {
+            box-sizing: content-box;
+            color: #000000
+        }
+
+        .cellRenderColorGRAY {
+            margin: 4px;
+            margin-top: 8px;
+            float: right;
+            /*background-color: #808080;*/
+            color: #808080;
+        }
+
+        .cellRenderColorBLUE {
+            margin: 4px;
+            margin-top: 8px;
+            float: right;
+            color: #0000ff;
+        }
+
+        .cellRenderColorRED_Total {
+            margin: 4px;
+            margin-top: 8px;
+            float: right;
+            color: #ff0000;
+            font-weight: bold;
+            /*font-size: 12px;*/
+        }
+
+        .cellRenderColorBLUE_Total {
+            margin: 4px;
+            margin-top: 8px;
+            float: right;
+            color: #0000ff;
+            font-weight: bold;
+            /*font-size: 12px;*/
+        }
+    </style>
+
+
+
+    <script type="text/javascript">
+
+        var secOK = true;
+        var GROBAL_GROUPS;
+        var GROBAL_CHECKED = false;
+
+        var MONDAY_HOILDAY = false;
+        var TUESDAY_HOILDAY = false;
+        var WEDSDAY_HOILDAY = false;
+        var THURSDAY_HOILDAY = false;
+        var FRIDAY_HOILDAY = false;
+
+        //var P_WEEKLY_REPORTID = '9E43C066-1D22-EB11-B8D6-00155D000D02';
+        var P_WEEKLY_REPORTID = window.parent.Xrm.Page.data.entity.getId();
+
+        var ret = P_WEEKLY_REPORTID.split('{')[1].split('}');
+        P_WEEKLY_REPORTID = ret[0];
+
+        var P_SYSTEMUSERID = window.top.parent.Xrm.Page.context.getUserId();
+
+        var ret = P_SYSTEMUSERID.split('{')[1].split('}');
+        P_SYSTEMUSERID = ret[0];
+
+        setNextWeek(P_WEEKLY_REPORTID);
+
+        $(document).ready(function () {
+
+
+            getGridData(0);
+
+
+
+            //내용 편집시 업데이트 반영
+            $("#grid").on('cellendedit', function (event) {
+                var args = event.args;
+                var columnDataField = args.datafield; //칼럼명
+                var rowIndex = args.rowindex; // row 번째수
+                var cellValue = args.value; //바뀐값
+                var oldValue = args.oldvalue;
+                var value;
+
+                if (columnDataField != "new_d_expected_sum"
+                    && columnDataField != "new_d_real_sum"
+                    && columnDataField != "Check") {
+                    if (columnDataField == "new_p_check") {
+                        //var ret = 0;
+
+                        //if (cellValue == "진행중") { ret = 100000000; }
+                        //if (cellValue == "완료") { ret = 100000001; }
+                        //if (cellValue == "보류") { ret = 100000002; }
+
+                        value = cellValue.value;
+                        columnDataField = "new_p_check";
+                    }
+                    else if (columnDataField == "new_ntxt_description") {
+                        value = cellValue;
+                    }
+                    else {
+                        value = parseFloat(cellValue);
+                        var result = 0;
+                        //예상일경우
+                        if (columnDataField == "new_d_input_expected_monday" ||
+                            columnDataField == "new_d_input_expected_tuesday" ||
+                            columnDataField == "new_d_input_expected_wednesday" ||
+                            columnDataField == "new_d_input_expected_thursday" ||
+                            columnDataField == "new_d_input_expected_friday") {
+
+                            result = args.row["new_d_expected_sum"] + cellValue - oldValue;
+                            $("#grid").jqxGrid('setcellvalue', rowIndex, "new_d_expected_sum", result);
+                        }
+
+                        //실적일경우
+                        if (columnDataField == "new_d_input_real_monday" ||
+                            columnDataField == "new_d_input_real_tuesday" ||
+                            columnDataField == "new_d_input_real_wednesday" ||
+                            columnDataField == "new_d_input_real_thursday" ||
+                            columnDataField == "new_d_input_real_friday") {
+
+                            result = args.row["new_d_real_sum"] + cellValue - oldValue;
+                            $("#grid").jqxGrid('setcellvalue', rowIndex, "new_d_real_sum", result);
+                        }
+
+
+                    }
+                    var data = {};
+                    data[columnDataField] = value;
+
+                    //$("#grid").jqxGrid({ disabled: true });
+
+                    window.top.parent.Xrm.WebApi.updateRecord("new_weekly_report_detail", args["row"]["new_weekly_report_detailid"], data).then(
+                        function success(result) {
+
+                            //alert("데이터 업데이트 성공");
+                            //getGridData(1);
+                            //$("#grid").jqxGrid({ disabled: false });
+
+                        },
+                        function (error) {
+
+                            if (error.errorCode == 2147779334) {
+                                alert("권한이 없는 사용자입니다. ");
+                            }
+                            else {
+                                alert("에러가 발생했습니다. 관리자에게 문의하여주세요.");
+                            }
+                            location.reload();
+                            // handle error conditions
+                        }
+                    );
+                }
+
+                if (columnDataField == "Check") {
+                    $("#grid").jqxGrid('setcellvalue', rowIndex, "Check", cellValue);
+                }
+
+
+            });
+
+            //헤더 클릭시 전체 체크 박스
+            $("#grid").on("columnclick", function (event) {
+                // event arguments.
+                var args = event.args;
+                // column's settings.
+                var column = args.column;
+                // column data field.
+                var dataField = args.datafield;
+                // original event.
+
+                if (dataField == "Check") {
+                    var rows = $('#grid').jqxGrid('getrows');
+                    var ret = $('#datalist-checkall').is(":checked");
+
+                    if (ret) {
+                        for (var i = 0; i < rows.length; i++) {
+                            $("#grid").jqxGrid('setcellvalue', i, "Check", true);
+                        }
+                        $("#datalist-checkall").prop("checked", true);
+                        $("#grid").jqxGrid('setcolumnproperty', 'Check', 'text', '<input type="checkbox" name="form-field-checkbox" id="datalist-checkall" checked="true">');
+
+                    }
+                    else {
+                        for (var i = 0; i < rows.length; i++) {
+                            $("#grid").jqxGrid('setcellvalue', i, "Check", false);
+                        }
+
+                        $("#datalist-checkall").prop("checked", false);
+                        $("#grid").jqxGrid('setcolumnproperty', 'Check', 'text', '<input type="checkbox" name="form-field-checkbox" id="datalist-checkall">');
+
+
+                    }
+                    //column.text = '<input type="checkbox" name="form-field-checkbox" id="datalist-checkall" checked="' + GROBAL_CHECKED + '">';
+
+                }
+
+
+            });
+
+            $("#jqxwindow").jqxWindow({ height: 300, width: 350, theme: 'summer', isModal: true, autoOpen: false });
+
+            popUpButtonClickEvent();
+            //setWeek();
+
+            //팝업 안에서 jqwidget 안불러 지는 듯함.
+            //CreateMonthInput("sel_month");
+
+        });
+
+        function setWeek(setvalue) {
+
+            var date = new Date();
+            var year = date.getFullYear();
+            var new_year = "10000" + year.toString();
+
+            try {
+                var query = `?$select=\
+                                                                            new_weekid,\
+                                                                            new_name,\
+                                                                            &$filter=new_p_month eq ` + $("#sel_month").val() +
+                    " and new_p_year eq " + new_year;
+
+                window.top.parent.Xrm.WebApi.retrieveMultipleRecords("new_weeks", query)
+                    .then(function (data) {
+
+                        $('#sel_week').children('option').remove();
+
+                        for (var i = 0; i < data.entities.length; i++) {
+
+                            $('#sel_week').append("<option value=\"" + data.entities[i].new_weekid + "\">" + data.entities[i].new_name.split('_')[2] + "</option>");
+                        }
+
+                        if (setvalue !== undefined) {
+                            $("#sel_week").val(setvalue);
+                        }
+
+                    })
+                    .fail(function (error) {
+                        alert("error");
+                    });
+            } catch (e) {
+                window.top.parent.Xrm.Utility.alertDialog(e.message);
+            }
+        }
+
+
+        function setNextWeek(weekreport) {
+
+            window.top.parent.Xrm.WebApi.retrieveRecord("new_weekly_reports", weekreport, "?$select=_new_l_week_value").then(
+                function success(result) {
+
+                    window.top.parent.Xrm.WebApi.retrieveRecord("new_weeks", result._new_l_week_value, "?$select=new_i_order").then(
+                        function success(result) {
+                            var order = result.new_i_order + 1;
+
+                            if (order == 53) order = 1;
+
+
+                            try {
+                                var query = `?$select=\
+                                                                        new_weekid,\
+                                                                        new_name,\
+                                                                        new_p_year,\
+                                                                        new_p_month,\
+                                                                        new_p_week,\
+                                                                        &$filter=new_i_order eq ` + order;
+
+                                window.top.parent.Xrm.WebApi.retrieveMultipleRecords("new_weeks", query)
+                                    .then(function (data) {
+
+                                        var date = new Date();
+                                        var year = date.getFullYear();
+                                        var new_year = year.toString();
+
+                                        for (var i = 0; i < data.entities.length; i++) {
+
+                                            if (data.entities[i]["new_p_year@OData.Community.Display.V1.FormattedValue"] == new_year) {
+
+                                                $("#sel_year").val(new_year);
+                                                $("#sel_month").val(data.entities[i]["new_p_month"]);
+
+                                                var week = data.entities[i]["new_p_week@OData.Community.Display.V1.FormattedValue"].split("주차")[0]
+
+                                                setWeek(data.entities[i].new_weekid);
+
+
+
+                                            }
+
+                                        }
+
+
+                                    })
+                                    .fail(function (error) {
+                                        alert("error");
+                                    });
+                            } catch (e) {
+                                window.top.parent.Xrm.Utility.alertDialog(e.message);
+                            }
+
+
+                        },
+                        function (error) {
+                            console.log(error.message);
+                            // handle error conditions
+                        }
+                    );
+
+
+                },
+                function (error) {
+                    console.log(error.message);
+                    // handle error conditions
+                }
+            );
+
+
+        }
+
+
+        function popUpButtonClickEvent() {
+
+
+            $("#button_yes").click(function () {
+
+
+                var nextWeekID = $("#sel_week").val();
+
+                var createdata = {
+                    "new_l_week@odata.bind": "/new_weeks(" + nextWeekID + ")"
+                }
+
+                window.top.parent.Xrm.WebApi.retrieveRecord("new_weeks", $("#sel_week").val(), "?$select=new_i_order").then(
+                    function success(result) {
+
+                        var date = new Date();
+                        var year = date.getFullYear();
+                        var new_year = parseInt(year);
+
+                        //order가 하나씩 밀려있다 ?
+
+                        var query = `?$select=\
+                                                                            new_chk_holiday,\
+                                                                            new_dt_date,\
+                                                                            new_txt_day_week,\
+                                                                            &$filter=new_i_weeknum eq ` + (result.new_i_order + 1) + " and new_i_year eq " + new_year;
+
+                        window.top.parent.Xrm.WebApi.retrieveMultipleRecords("new_workdaies", query)
+                            .then(function (dataWorkDay) {
+
+
+                                window.top.parent.Xrm.WebApi.createRecord("new_weekly_report", createdata)
+                                    .then(function (data) {
+
+
+                                        var motherWeekReport = data.id;
+
+                                        //grid에 있는 현재 상세들 물려줘야함.
+                                        //to do: 그룹사 추가해야함.
+
+                                        var rows = $('#grid').jqxGrid('getrows');
+
+                                        for (var i = 0; i < rows.length; i++) {
+
+                                            //구분이 업무마스터 일시
+                                            var datadetail;
+
+                                            if (rows[i]["new_p_division@OData.Community.Display.V1.FormattedValue"] == "업무Master") {
+
+                                                datadetail = {
+                                                    "new_l_weekly_report@odata.bind": "/new_weekly_reports(" + motherWeekReport + ")",
+
+                                                    "new_txt_code": rows[i].new_txt_code,
+                                                    "new_p_division": rows[i].new_p_division,
+                                                    "new_txt_level1": rows[i].new_txt_level1,
+                                                    "new_txt_level2": rows[i].new_txt_level2,
+                                                    "new_txt_level3": rows[i].new_txt_level3,
+                                                    "new_l_work_master1@odata.bind": "/new_work_master1s(" + rows[i]._new_l_work_master1_value + ")",
+                                                    "new_l_work_master2@odata.bind": "/new_work_master2s(" + rows[i]._new_l_work_master2_value + ")",
+                                                    "new_l_work_master3@odata.bind": "/new_work_master3s(" + rows[i]._new_l_work_master3_value + ")",
+
+                                                    "new_ntxt_description": rows[i].new_ntxt_description,
+                                                    "new_d_input_expected_monday": rows[i].new_d_input_expected_monday,
+                                                    "new_d_input_expected_tuesday": rows[i].new_d_input_expected_tuesday,
+                                                    "new_d_input_expected_wednesday": rows[i].new_d_input_expected_wednesday,
+                                                    "new_d_input_expected_thursday": rows[i].new_d_input_expected_thursday,
+                                                    "new_d_input_expected_friday": rows[i].new_d_input_expected_friday
+                                                    //"new_p_check@OData.Community.Display.V1.FormattedValue" : rows[i]["new_p_check@OData.Community.Display.V1.FormattedValue"]
+                                                }
+                                            }
+
+                                            //구분이 프로젝트 일시
+                                            else if (rows[i]["new_p_division@OData.Community.Display.V1.FormattedValue"] == "프로젝트") {
+
+                                                datadetail = {
+                                                    "new_l_weekly_report@odata.bind": "/new_weekly_reports(" + motherWeekReport + ")",
+
+                                                    "new_txt_code": rows[i].new_txt_code,
+                                                    "new_p_division": rows[i].new_p_division,
+                                                    "new_l_project@odata.bind": "/new_projects(" + rows[i]._new_l_project_value + ")",
+                                                    "new_l_related_project_detail@odata.bind": "/new_projectdetails(" + rows[i]._new_l_related_project_detail_value + ")",
+
+                                                    "new_ntxt_description": rows[i].new_ntxt_description,
+                                                    "new_d_input_expected_monday": rows[i].new_d_input_expected_monday,
+                                                    "new_d_input_expected_tuesday": rows[i].new_d_input_expected_tuesday,
+                                                    "new_d_input_expected_wednesday": rows[i].new_d_input_expected_wednesday,
+                                                    "new_d_input_expected_thursday": rows[i].new_d_input_expected_thursday,
+                                                    "new_d_input_expected_friday": rows[i].new_d_input_expected_friday
+                                                    //"new_p_check@OData.Community.Display.V1.FormattedValue" : rows[i]["new_p_check@OData.Community.Display.V1.FormattedValue"]
+                                                }
+                                            }
+                                            else {
+                                                //error
+                                            }
+
+
+                                            if ($('input:checkbox[id="checkholiday"]').is(":checked")) {
+
+                                                for (var j = 0; j < dataWorkDay.entities.length; j++) {
+
+                                                    if (dataWorkDay.entities[j]["new_txt_day_week"] == "월요일" && dataWorkDay.entities[j]["new_chk_holiday"]) datadetail["new_d_input_expected_monday"] = 0;
+                                                    if (dataWorkDay.entities[j]["new_txt_day_week"] == "화요일" && dataWorkDay.entities[j]["new_chk_holiday"]) datadetail["new_d_input_expected_tuesday"] = 0;
+                                                    if (dataWorkDay.entities[j]["new_txt_day_week"] == "수요일" && dataWorkDay.entities[j]["new_chk_holiday"]) datadetail["new_d_input_expected_wednesday"] = 0;
+                                                    if (dataWorkDay.entities[j]["new_txt_day_week"] == "목요일" && dataWorkDay.entities[j]["new_chk_holiday"]) datadetail["new_d_input_expected_thursday"] = 0;
+                                                    if (dataWorkDay.entities[j]["new_txt_day_week"] == "금요일" && dataWorkDay.entities[j]["new_chk_holiday"]) datadetail["new_d_input_expected_friday"] = 0;
+
+                                                }
+
+
+                                            }
+
+                                            var copyflag = false;
+
+                                            if (!$('input:checkbox[id="selectcopy"]').is(":checked")) copyflag = true;
+                                            else if ($('input:checkbox[id="selectcopy"]').is(":checked") && rows[i]["Check"] == 1) copyflag = true;
+
+                                            if (copyflag) {
+                                                    window.top.parent.Xrm.WebApi.createRecord("new_weekly_report_detail", datadetail)
+                                                        .then(function (data) {
+                                                            console.log("성공");
+                                                            //alert("성공");
+                                                        })
+                                                        .fail(function (error) {
+                                                            alert(error.message);
+                                                        });
+                                            }
+                                        }
+
+                                        //if (confirm("주간업무 리스트로 이동하시겠습니까?")) {
+                                        //    window.top.parent.parent.parent.$("#Tabnew_weekly_report-main").click();
+                                        //}
+
+                                    })
+                                    .fail(function (error) {
+                                        alert(error.message);
+                                    });
+
+
+
+                            },
+                                function (error) {
+                                    alert(error.message);
+                                    // handle error conditions
+                                }
+                            );
+                        //코드 업데이트 필요 todo
+                    })
+                    .fail(function (error) {
+                        alert(error.message);
+                    });
+
+            });
+
+
+            $("#button_no").click(function () {
+                $("#jqxwindow").jqxWindow('close');
+            });
+
+            $("#sel_month").change(function () {
+
+                setWeek();
+
+            });
+
+        }
+
+
+
+        function getGridData(type) {
+            par = {};
+            //par.P_SYSTEMUSERID = 'EC111429-9704-E811-80CF-BC5FF48803CB';
+            par.P_SYSTEMUSERID = P_SYSTEMUSERID;
+            par.P_WEEKLY_REPORTID = P_WEEKLY_REPORTID;
+            //https://cellcrmdev.celltrion.com/api/data/v9.0/new_weekly_report_details?$select=new_txt_level1&$filter=_new_l_weekly_report_value eq '7f811067-9a77-ea11-b8d6-00155d000d02'
+
+            try {
+                var query = `?$select=\
+                                                                        new_name,\
+                                                                        new_txt_code,\
+                                                                        new_p_division,\
+                                                                        new_p_check,\
+                                                                        new_weekly_report_detailid,\
+                                                                        new_txt_level1,\
+                                                                        new_txt_level2,\
+                                                                        new_txt_level3,\
+                                                                        _new_l_work_master1_value,\
+                                                                        _new_l_work_master2_value,\
+                                                                        _new_l_work_master3_value,\
+                                                                        _new_l_related_project_detail_value,\
+                                                                        _new_l_project_value,\
+                                                                        new_ntxt_description,\
+                                                                        new_d_input_expected_monday,\
+                                                                        new_d_input_real_monday,\
+                                                                        new_d_input_expected_tuesday,\
+                                                                        new_d_input_real_tuesday,\
+                                                                        new_d_input_expected_wednesday,\
+                                                                        new_d_input_real_wednesday,\
+                                                                        new_d_input_expected_thursday,\
+                                                                        new_d_input_real_thursday,\
+                                                                        new_d_input_expected_friday,\
+                                                                        new_d_input_real_friday,\
+                                                                        new_d_expected_sum,\
+                                                                        new_d_real_sum\
+                                                                        &$filter=_new_l_weekly_report_value eq ` + par.P_WEEKLY_REPORTID;
+
+                window.top.parent.Xrm.WebApi.retrieveMultipleRecords("new_weekly_report_detail", query)
+                    .then(function (data) {
+
+
+
+                        if (type == 0) {
+                            setGridData(data.entities);
+
+                        }
+                        else if (type == 1) {
+                            dataRefresh(data.entities);
+                        }
+                        //detail retreive로는 nodate일시 name 읽을 수 없음.
+                        //if (true) {
+                        //    newNameParser(data.entities[0].new_name);
+                        //}
+
+                    })
+                    .fail(function (error) {
+                        alert("error");
+                    });
+            } catch (e) {
+                window.top.parent.Xrm.Utility.alertDialog(e.message);
+            }
+
+        }
+
+
+        function newNameParser(newname) {
+            //2021년_1월_1주차_박희진_업무상세
+            var word = newname.split('_');
+            var year = word[0];
+            var month = word[1];
+            var week = word[2];
+
+            //year,month,week settting
+            //$("#sel_year").text(year);
+            //$("#sel_month").text(month);
+
+            $("#sel_year").val(year.split('년')[0]);
+            $("#sel_month").val(month.split('월')[0]);
+
+        }
+
+        function setGridData(List) {
+
+            var source =
+            {
+
+                datafields: [
+                    { name: '_new_l_related_project_detail_value', type: 'string' },
+                    { name: '_new_l_project_value', type: 'string' },
+                    { name: '_new_l_work_master1_value', type: 'string' },
+                    { name: '_new_l_work_master2_value', type: 'string' },
+                    { name: '_new_l_work_master3_value', type: 'string' },
+                    { name: 'new_txt_code', type: 'string' },
+                    { name: 'Check', type: 'boolean' },
+                    { name: 'new_weekly_report_detailid', type: 'string' },
+                    { name: 'new_p_check@OData.Community.Display.V1.FormattedValue', type: 'string' },
+                    { name: 'new_p_division@OData.Community.Display.V1.FormattedValue', type: 'string' },
+                    { name: 'new_p_division', type: 'string' },
+                    { name: 'new_txt_level1', type: 'string' },
+                    { name: 'new_txt_level2', type: 'string' },
+                    { name: 'new_txt_level3', type: 'string' },
+                    { name: 'new_ntxt_description', type: 'string' },
+                    { name: 'new_d_input_expected_monday', type: 'float' },
+                    { name: 'new_d_input_real_monday', type: 'float' },
+                    { name: 'new_d_input_expected_tuesday', type: 'float' },
+                    { name: 'new_d_input_real_tuesday', type: 'float' },
+                    { name: 'new_d_input_expected_wednesday', type: 'float' },
+                    { name: 'new_d_input_real_wednesday', type: 'float' },
+                    { name: 'new_d_input_expected_thursday', type: 'float' },
+                    { name: 'new_d_input_real_thursday', type: 'float' },
+                    { name: 'new_d_input_expected_friday', type: 'float' },
+                    { name: 'new_d_input_real_friday', type: 'float' },
+                    { name: 'new_d_expected_sum', type: 'float' },
+                    { name: 'new_d_real_sum', type: 'float' }
+                ],
+
+
+                localdata: List
+            };
+
+
+
+            var columns = [
+                { name: '_new_l_related_project_detail_value', type: 'string', width: "0%", hidden: true },
+                { name: '_new_l_project_value', type: 'string', width: "0%", hidden: true },
+                { name: '_new_l_work_master1_value', type: 'string', width: "0%", hidden: true },
+                { name: '_new_l_work_master2_value', type: 'string', width: "0%", hidden: true },
+                { name: '_new_l_work_master3_value', type: 'string', width: "0%", hidden: true },
+                { name: 'new_p_division', type: 'string', width: "0%", hidden: true },
+                { name: 'new_txt_code', type: 'string', width: "0%", hidden: true },
+                {
+                    text: '<input type="checkbox" name="form-field-checkbox" id="datalist-checkall">', datafield: 'Check', columntype: 'checkbox', width: 67, pinned: true, sortable: false
+                },
+                { text: '구분', datafield: 'new_p_division@OData.Community.Display.V1.FormattedValue', width: "5%", editable: false, pinned: true },
+                //{ text: 'new_weekly_report_detailid', datafield: 'new_weekly_report_detailid', hidden: true },
+                { text: '대분류', datafield: 'new_txt_level1', width: "5%", editable: false, pinned: true },
+                { text: '중분류', datafield: 'new_txt_level2', width: "6%", editable: false, pinned: true },
+                { text: '소분류', datafield: 'new_txt_level3', width: "8%", editable: false, pinned: true },
+                { text: '내용', datafield: 'new_ntxt_description', editable: true },// autoresizecolumn : true },
+                {
+                    text: '진행현황', datafield: 'new_p_check', width: "5%", displayfield: 'new_p_check@OData.Community.Display.V1.FormattedValue', columntype: 'dropdownlist',
+                    createeditor: function (row, value, editor) {
+                        var dataSource =
+                            [
+                                { label: '진행중', value: '100000000' },
+                                { label: '완료', value: '100000001' },
+                                { label: '보류', value: '100000002' }
+                            ];
+                        editor.jqxDropDownList({ source: dataSource, displayMember: 'label', valueMember: 'value', autoDropDownHeight: true });
+                    }
+                },
+                { text: '예상', columngroup: '월요일', datafield: 'new_d_input_expected_monday', width: "3.5%", align: 'center', cellsalign: 'right', cellsformat: 'f1', aggregates: ["sum"], aggregatesrenderer: aggregatesSumRenderBLUE, cellsrenderer: cellRenderColorBLUE },
+                { text: '실적', columngroup: '월요일', datafield: 'new_d_input_real_monday', width: "3.5%", align: 'center', cellsalign: 'right', cellsformat: 'f1', aggregates: ["sum"], aggregatesrenderer: aggregatesSumRenderRED, cellsrenderer: cellRenderColorRED },
+                { text: '예상', columngroup: '화요일', datafield: 'new_d_input_expected_tuesday', width: "3.5%", align: 'center', cellsalign: 'right', cellsformat: 'f1', aggregates: ["sum"], aggregatesrenderer: aggregatesSumRenderBLUE, cellsrenderer: cellRenderColorBLUE },
+                { text: '실적', columngroup: '화요일', datafield: 'new_d_input_real_tuesday', width: "3.5%", align: 'center', cellsalign: 'right', cellsformat: 'f1', aggregates: ["sum"], aggregatesrenderer: aggregatesSumRenderRED, cellsrenderer: cellRenderColorRED },
+                { text: '예상', columngroup: '수요일', datafield: 'new_d_input_expected_wednesday', width: "3.5%", align: 'center', cellsalign: 'right', cellsformat: 'f1', aggregates: ["sum"], aggregatesrenderer: aggregatesSumRenderBLUE, cellsrenderer: cellRenderColorBLUE },
+                { text: '실적', columngroup: '수요일', datafield: 'new_d_input_real_wednesday', width: "3.5%", align: 'center', cellsalign: 'right', cellsformat: 'f1', aggregates: ["sum"], aggregatesrenderer: aggregatesSumRenderRED, cellsrenderer: cellRenderColorRED },
+                { text: '예상', columngroup: '목요일', datafield: 'new_d_input_expected_thursday', width: "3.5%", align: 'center', cellsalign: 'right', cellsformat: 'f1', aggregates: ["sum"], aggregatesrenderer: aggregatesSumRenderBLUE, cellsrenderer: cellRenderColorBLUE },
+                { text: '실적', columngroup: '목요일', datafield: 'new_d_input_real_thursday', width: "3.5%", align: 'center', cellsalign: 'right', cellsformat: 'f1', aggregates: ["sum"], aggregatesrenderer: aggregatesSumRenderRED, cellsrenderer: cellRenderColorRED },
+                { text: '예상', columngroup: '금요일', datafield: 'new_d_input_expected_friday', width: "3.5%", align: 'center', cellsalign: 'right', cellsformat: 'f1', aggregates: ["sum"], aggregatesrenderer: aggregatesSumRenderBLUE, cellsrenderer: cellRenderColorBLUE },
+                { text: '실적', columngroup: '금요일', datafield: 'new_d_input_real_friday', width: "3.5%", align: 'center', cellsalign: 'right', cellsformat: 'f1', aggregates: ["sum"], aggregatesrenderer: aggregatesSumRenderRED, cellsrenderer: cellRenderColorRED },
+                { text: '예상', columngroup: '합계', datafield: 'new_d_expected_sum', width: "4%", editable: false, align: 'center', cellsalign: 'right', cellsformat: 'f1', aggregates: ["sum"], aggregatesrenderer: aggregatesSumRenderBLUE, cellsrenderer: cellRenderColorBLUE_Total },
+                { text: '실적', columngroup: '합계', datafield: 'new_d_real_sum', width: "4%", editable: false, align: 'center', cellsalign: 'right', cellsformat: 'f1', aggregates: ["sum"], aggregatesrenderer: aggregatesSumRenderRED, cellsrenderer: cellRenderColorRED_Total }
+            ];
+
+            var columgroup = [
+                { text: '월요일', align: 'center', name: '월요일' },
+                { text: '화요일', align: 'center', name: '화요일' },
+                { text: '수요일', align: 'center', name: '수요일' },
+                { text: '목요일', align: 'center', name: '목요일' },
+                { text: '금요일', align: 'center', name: '금요일' },
+                { text: '합계', align: 'center', name: '합계' },
+            ];
+
+            var rowgroup = ["new_txt_level1"];
+
+            var dataAdapter = new $.jqx.dataAdapter(source);
+            GROBAL_GROUPS = JSON.parse(JSON.stringify(rowgroup));
+            // grid setting
+            $("#grid").jqxGrid({
+
+                theme: "energyblue",
+                width: '100%',
+                height: 550,
+                //autoheight: true,
+                //autorowheight: true,
+                source: dataAdapter,
+                columnsresize: true,
+                pageable: true,
+                //pagenum: 0,
+                pagesize: 10,
+                pagesizeoptions: ['10', '20', '30', '40', '50'],
+                groupsexpandedbydefault: true,
+                editable: true,
+                editmode: "selectedcell", //Default
+                altrows: false,
+                sortable: true,
+                enabletooltips: true,
+                ready: function () {
+                    $("#grid").jqxGrid('sortby', 'new_txt_code', 'asc');
+                    $("#grid").jqxGrid('sortby', 'new_p_division@OData.Community.Display.V1.FormattedValue');
+
+                    //CheckBox 기본값 설정
+                    for (var i = 0; i < List.length; i++) {
+                        $("#grid").jqxGrid('setcellvalue', i, "Check", 0);
+                    }
+                },
+
+                //mode를 두개 가져갈순 없는건가.
+                //selectionmode: 'checkbox', //'multiplecellsadvanced',
+                selectionmode: 'multiplecellsadvanced', //'multiplecellsadvanced',
+                showaggregates: true,
+                showgroupaggregates: false,
+                showstatusbar: true,
+                showtoolbar: true,
+                groupable: true,
+                //ready: function () {
+                //    $('#grid').jqxGrid('autoresizecolumns');
+                //},
+                rendertoolbar: function (statusbar) {
+                    // appends buttons to the status bar.
+                    var container = $("<div style='overflow: hidden; position: relative; margin: 5px;'></div>");
+                    var addButton = $("<div style='float: left; margin-left: 5px;'><img style='position: relative; margin-top: 2px;' src='https://cellcrmdev.celltrion.com//WebResources/new_add_icon'/><span style='margin-left: 4px; position: relative; top: -3px;'>추가</span></div>");
+                    var deleteButton = $("<div style='float: left; margin-left: 5px;'><img style='position: relative; margin-top: 2px;' src='https://cellcrmdev.celltrion.com//WebResources/new_delete_icon'/><span style='margin-left: 4px; position: relative; top: -3px;'>삭제</span></div>");
+                    var reloadButton = $("<div style='float: left; margin-left: 5px;'><img style='position: relative; margin-top: 2px;' src='https://cellcrmdev.celltrion.com//WebResources/new_refresh_icon'/><span style='margin-left: 4px; position: relative; top: -3px;'>새로고침</span></div>");
+                    var searchButton = $("<div style='float: left; margin-left: 5px;'><img style='position: relative; margin-top: 2px;' src='https://cellcrmdev.celltrion.com//WebResources/new_search_icon'/><span style='margin-left: 4px; position: relative; top: -3px;'>주차복사</span></div>");
+                    var finishButton = $("<div style='float: left; margin-left: 5px;'><img style='position: relative; margin-top: 2px;' src='https://cellcrmdev.celltrion.com//WebResources/new_search_icon'/><span style='margin-left: 4px; position: relative; top: -3px;'>완료처리</span></div>");
+                    var popupButton = $("<div style='float: right; margin-right: 5px;'><img style='position: relative; margin-top: 2px;' src='https://cellcrmdev.celltrion.com//WebResources/new_search_icon'/><span style='margin-right: 4px; position: relative; top: -3px;'>새창으로 열기</span></div>");
+
+                    container.append(addButton);
+                    container.append(deleteButton);
+                    container.append(reloadButton);
+                    container.append(searchButton);
+                    container.append(finishButton);
+                    container.append(popupButton);
+
+                    statusbar.append(container);
+                    addButton.jqxButton({ width: 55, height: 20 });
+                    deleteButton.jqxButton({ width: 55, height: 20 });
+                    reloadButton.jqxButton({ width: 70, height: 20 });
+                    searchButton.jqxButton({ width: 70, height: 20 });
+                    finishButton.jqxButton({ width: 70, height: 20 });
+                    popupButton.jqxButton({ width: 95, height: 20 });
+                    // add new row.
+                    addButton.click(function (event) {
+
+                        var url = "https://cellcrmdev.celltrion.com/main.aspx?etc=10088&extraqs=%3f_CreateFromId%3d%257b" + P_WEEKLY_REPORTID + "%257d%26_CreateFromType%3d10087%26etc%3d10088&histKey=553535808&newWindow=true&pagetype=entityrecord";
+
+                        var popup = PopupCenter(url, url, 1100, 700, { toolbar: 0, resizable: 0, location: 0, menubar: 0, status: 0, scrollbars: 1 });
+
+                        popup.onbeforeunload = function () {
+                            //확인필요
+                            location.reload();
+                        }
+
+                    });
+                    // delete selected row.
+                    deleteButton.click(function (event) {
+                        var rows = $('#grid').jqxGrid('getrows');
+                        var checkedRows = [];
+                        for (var i = 0; i < rows.length; i++) {
+                            if (rows[i]["Check"]) {
+                                checkedRows.push(rows[i]);
+                            }
+                        }
+
+                        if (checkedRows.length > 0) {
+                            if (confirm("선택한 업무가 삭제됩니다.")) {
+
+                                if (checkedRows.length > 0) {
+
+                                    for (var i = 0; i < checkedRows.length; i++) {
+                                        window.top.parent.Xrm.WebApi.deleteRecord("new_weekly_report_detail", checkedRows[i]["new_weekly_report_detailid"]).then(
+                                            function success(result) {
+
+                                            },
+                                            function (error) {
+                                                console.log(error.message);
+                                                if (error.errorCode == 2147779334) {
+                                                    alert("권한이 없는 사용자입니다. ");
+                                                }
+                                                else {
+                                                    alert("에러가 발생했습니다. 관리자에게 문의하여주세요.");
+                                                }
+
+
+
+                                                location.reload();
+                                            }
+                                        );
+
+                                        //success와 별개로 grid에서 지워줌(비동기식이라 success에선 이미 for문이 모두 지나가버림)
+                                        $('#grid').jqxGrid('deleterow', checkedRows[i]["uid"]);
+                                    }
+                                }
+                            }
+                        }
+                        else {
+                            alert("삭제할 업무를 선택해주시기 바랍니다.");
+                        }
+
+
+
+
+                    });
+                    // reload grid data.
+                    reloadButton.click(function (event) {
+                        location.reload();
+                    });
+
+
+                    finishButton.click(function (event) {
+                        //update 해야함
+
+                        if (confirm("선택된 주간업무를 완료 처리 하시겠습니까?")) {
+
+                            var rows = $('#grid').jqxGrid('getrows');
+
+                            if (IsChecked()) {
+
+                                for (var i = 0; i < rows.length; i++) {
+
+                                    if (rows[i]["Check"]) {
+
+                                        //현재 그리드에서 업데이트
+                                        $("#grid").jqxGrid('setcellvalue', i, "new_p_check@OData.Community.Display.V1.FormattedValue", "완료");
+                                        //뒷단 데이터 업데이트
+                                        updateDetailGridByColumn(rows[i]["new_weekly_report_detailid"], "new_p_check", "완료");
+                                    }
+
+                                }
+
+                            }
+                            else {
+
+                                alert("선택된 주간업무가 없습니다. 완료할 주간업무를 선택하여 주세요.");
+
+                            }
+                        }
+
+                    });
+                    // search for a record.
+                    //복사 버튼 클릭
+                    searchButton.click(function (event) {
+                        if (IsChecked()) {
+                            $('#selectcopy').prop('checked', true);
+                        }
+                        else {
+                            $('#selectcopy').prop('checked', false);
+                        }
+
+                        $("#jqxwindow").jqxWindow('open');
+                    });
+                },
+                columns: columns,
+                columngroups: columgroup,
+                //groups: rowgroup,
+                columnsresize: true
+            });
+            gridGroupSetUp("grid");
+
+
+
+
+            //구분~내용 선택불가하도록 세팅
+            //$("#grid").on('cellselect', function (event) {
+            //    var dataField = event.args.datafield;
+            //    var rowBoundIndex = event.args.rowindex;
+
+            //    if (dataField === 'new_p_division' || dataField === 'new_txt_level1' || dataField === 'new_txt_level2' || dataField === 'new_txt_level3') {
+            //        $('#grid').jqxGrid('unselectcell', rowBoundIndex, dataField);
+            //    }
+            //});
+
+
+            $("#grid").on("celldoubleclick", function (event) {
+                // event arguments.
+                var args = event.args;
+                // row's bound index.
+                var rowBoundIndex = args.rowindex;
+                // row's visible index.
+                var rowVisibleIndex = args.visibleindex;
+                // right click.
+                var rightClick = args.rightclick;
+                // original event.
+                var ev = args.originalEvent;
+                // column index.
+                var columnIndex = args.columnindex;
+                // column data field.
+                var dataField = args.datafield;
+                // cell value
+                var value = args.value;
+
+                if (1 <= columnIndex && columnIndex <= 5) {
+                    var url = "https://cellcrmdev.celltrion.com/main.aspx?pagetype=entityrecord&etc=10088&id=%7b" + args.row.bounddata["new_weekly_report_detailid"] + "%7d&extraqs=&newWindow=true";
+                    var popup = PopupCenter(url, url, 1100, 700, { toolbar: 0, resizable: 0, location: 0, menubar: 0, status: 0, scrollbars: 1 });
+
+                    popup.onbeforeunload = function () {
+                        getGridData(1);
+                    }
+                }
+                //debugger;
+
+
+            });
+        }
+
+
+
+        function dataRefresh(List) {
+
+            var source =
+            {
+
+                datafields: [
+                    { name: '_new_l_work_master1_value', type: 'string' },
+                    { name: '_new_l_work_master2_value', type: 'string' },
+                    { name: '_new_l_work_master3_value', type: 'string' },
+                    { name: '_new_l_related_project_detail_value', type: 'string' },
+                    { name: '_new_l_project_value', type: 'string' },
+                    { name: 'new_txt_code', type: 'string' },
+                    { name: 'Check', type: 'boolean' },
+                    { name: 'new_weekly_report_detailid', type: 'string' },
+                    { name: 'new_p_division', type: 'string', hidden: true },
+                    { name: 'new_p_check@OData.Community.Display.V1.FormattedValue', type: 'string' },
+                    { name: 'new_p_division@OData.Community.Display.V1.FormattedValue', type: 'string' },
+                    { name: 'new_txt_level1', type: 'string' },
+                    { name: 'new_txt_level2', type: 'string' },
+                    { name: 'new_txt_level3', type: 'string' },
+                    { name: 'new_ntxt_description', type: 'string' },
+                    { name: 'new_d_input_expected_monday', type: 'float' },
+                    { name: 'new_d_input_real_monday', type: 'float' },
+                    { name: 'new_d_input_expected_tuesday', type: 'float' },
+                    { name: 'new_d_input_real_tuesday', type: 'float' },
+                    { name: 'new_d_input_expected_wednesday', type: 'float' },
+                    { name: 'new_d_input_real_wednesday', type: 'float' },
+                    { name: 'new_d_input_expected_thursday', type: 'float' },
+                    { name: 'new_d_input_real_thursday', type: 'float' },
+                    { name: 'new_d_input_expected_friday', type: 'float' },
+                    { name: 'new_d_input_real_friday', type: 'float' },
+                    { name: 'new_d_expected_sum', type: 'float' },
+                    { name: 'new_d_real_sum', type: 'float' }
+                ],
+
+
+                localdata: List
+            };
+
+
+
+            var dataAdapter = new $.jqx.dataAdapter(source);
+            // initialize jqxGrid
+
+            $("#grid").jqxGrid({
+                source: dataAdapter,
+                ready: function () {
+                    $("#grid").jqxGrid('sortby', 'new_txt_code', 'asc');
+                    $("#grid").jqxGrid('sortby', 'new_p_division@OData.Community.Display.V1.FormattedValue');
+
+                    //CheckBox 기본값 설정
+                    for (var i = 0; i < List.length; i++) {
+                        $("#grid").jqxGrid('setcellvalue', i, "Check", 0);
+                    }
+                }
+            });
+
+            //
+            //$("#grid").jqxGrid('sortby', 'new_txt_code', 'asc');
+            //$("#grid").jqxGrid('sortby', 'new_p_division@OData.Community.Display.V1.FormattedValue');
+
+
+        }
+
+        function IsChecked() {
+            var rows = $('#grid').jqxGrid('getrows');
+
+            for (var i = 0; i < rows.length; i++) {
+
+                if (rows[i]["Check"]) {
+
+                    return true;
+                }
+
+            }
+
+            return false;
+
+        }
+
+        function gridGroupSetUp(gridId) {
+
+            //  gridGroupShowHide(gridId);
+
+            $("#" + gridId).on("groupschanged",
+
+                function (event) {
+                    //alert("groupschanged");
+                    // event arguments.
+                    var args = event.args;
+                    // type of change. Possible values: Add, Remove, Clear, Insert
+                    var type = args.type;
+                    // group index. The index of the added, removed or inserted group. If the type is "Clear", -1 is passed.
+                    var groupIndex = args.index;
+                    // groups array.
+                    var groups = args.groups;
+
+
+                    var cols = $("#" + gridId).jqxGrid("columns");
+
+                    if (type == "Add") { $('#' + gridId).jqxGrid('hidecolumn', groups[0]); }
+
+                    else if (type == "Remove") {
+
+                        for (var i = 0; i < GROBAL_GROUPS.length; i++) {
+                            for (var j = 0; j < groups.length; j++) {
+
+                                if (GROBAL_GROUPS[i] == groups[j]) {
+                                    GROBAL_GROUPS.splice(i, 1);
+
+                                }
+
+                            }
+                        }
+
+                        $('#' + gridId).jqxGrid('showcolumn', GROBAL_GROUPS[0]);
+                        //Remove 된 놈이 누군지 알아낸뒤 Show 시켜야됨.
+                    }
+
+                    else if (type == "Insert") { $('#' + gridId).jqxGrid('hidecolumn', groups[groupIndex]); }
+
+                    GROBAL_GROUPS = JSON.parse(JSON.stringify(groups));
+
+
+                });
+
+        }
+
+        // Render 통합 처리
+
+        function cellRenderColorRED(row, columnfield, value, defaulthtml, columnproperties, rowdata) {
+
+
+            var summaryData = $("#grid").jqxGrid('getcolumnaggregateddata', columnfield, ['min', 'max']);
+
+            if (summaryData.min == 0 && summaryData.max == 0) {
+                return '<span class ="cellRenderColorGRAY">' + parseFloat(value).toFixed(1) + '</span>';
+            }
+
+            else {
+
+                return '<span class ="cellRenderColorRED">' + parseFloat(value).toFixed(1) + '</span>';
+            }
+        }
+
+        function cellRenderColorBLUE(row, columnfield, value, defaulthtml, columnproperties, rowdata) {
+
+
+            var summaryData = $("#grid").jqxGrid('getcolumnaggregateddata', columnfield, ['min', 'max']);
+
+            if (summaryData.min == 0 && summaryData.max == 0) {
+                return '<span class ="cellRenderColorGRAY">' + parseFloat(value).toFixed(1) + '</span>';
+            }
+
+            else {
+                return '<span class ="cellRenderColorBLUE">' + parseFloat(value).toFixed(1) + '</span>';
+
+            }
+
+        }
+
+        // Render 요일별 처리
+        function cellRenderColorRED_MONDAY(row, columnfield, value, defaulthtml, columnproperties, rowdata) {
+
+            if (MONDAY_HOILDAY) {
+                return '<span class ="cellRenderColorGRAY">' + parseFloat(value).toFixed(1) + '</span>';
+            }
+
+            else {
+
+                return '<span class ="cellRenderColorRED">' + parseFloat(value).toFixed(1) + '</span>';
+            }
+        }
+
+        function cellRenderColorBLUE_MONDAY(row, columnfield, value, defaulthtml, columnproperties, rowdata) {
+
+            if (MONDAY_HOILDAY) {
+                return '<span class ="cellRenderColorGRAY">' + parseFloat(value).toFixed(1) + '</span>';
+            }
+
+            else {
+                return '<span class ="cellRenderColorBLUE">' + parseFloat(value).toFixed(1) + '</span>';
+
+            }
+
+        }
+
+        function cellRenderColorRED_TUESDAY(row, columnfield, value, defaulthtml, columnproperties, rowdata) {
+
+            if (TUESDAY_HOILDAY) {
+                return '<span class ="cellRenderColorGRAY">' + parseFloat(value).toFixed(1) + '</span>';
+            }
+
+            else {
+
+                return '<span class ="cellRenderColorRED">' + parseFloat(value).toFixed(1) + '</span>';
+            }
+        }
+
+        function cellRenderColorBLUE_TUESDAY(row, columnfield, value, defaulthtml, columnproperties, rowdata) {
+
+            if (TUESDAY_HOILDAY) {
+                return '<span class ="cellRenderColorGRAY">' + parseFloat(value).toFixed(1) + '</span>';
+            }
+
+            else {
+                return '<span class ="cellRenderColorBLUE">' + parseFloat(value).toFixed(1) + '</span>';
+
+            }
+
+        }
+
+        function cellRenderColorRED_WEDSDAY(row, columnfield, value, defaulthtml, columnproperties, rowdata) {
+
+            if (WEDSDAY_HOILDAY) {
+                return '<span class ="cellRenderColorGRAY">' + parseFloat(value).toFixed(1) + '</span>';
+            }
+
+            else {
+
+                return '<span class ="cellRenderColorRED">' + parseFloat(value).toFixed(1) + '</span>';
+            }
+        }
+
+        function cellRenderColorBLUE_WEDSDAY(row, columnfield, value, defaulthtml, columnproperties, rowdata) {
+
+            if (WEDSDAY_HOILDAY) {
+                return '<span class ="cellRenderColorGRAY">' + parseFloat(value).toFixed(1) + '</span>';
+            }
+
+            else {
+                return '<span class ="cellRenderColorBLUE">' + parseFloat(value).toFixed(1) + '</span>';
+
+            }
+
+        }
+
+        function cellRenderColorRED_THURSDAY(row, columnfield, value, defaulthtml, columnproperties, rowdata) {
+
+            if (THURSDAY_HOILDAY) {
+                return '<span class ="cellRenderColorGRAY">' + parseFloat(value).toFixed(1) + '</span>';
+            }
+
+            else {
+
+                return '<span class ="cellRenderColorRED">' + parseFloat(value).toFixed(1) + '</span>';
+            }
+        }
+
+        function cellRenderColorBLUE_THURSDAY(row, columnfield, value, defaulthtml, columnproperties, rowdata) {
+
+            if (THURSDAY_HOILDAY) {
+                return '<span class ="cellRenderColorGRAY">' + parseFloat(value).toFixed(1) + '</span>';
+            }
+
+            else {
+                return '<span class ="cellRenderColorBLUE">' + parseFloat(value).toFixed(1) + '</span>';
+
+            }
+
+        }
+
+        function cellRenderColorRED_FRIDAY(row, columnfield, value, defaulthtml, columnproperties, rowdata) {
+
+            if (FRIDAY_HOILDAY) {
+                return '<span class ="cellRenderColorGRAY">' + parseFloat(value).toFixed(1) + '</span>';
+            }
+
+            else {
+
+                return '<span class ="cellRenderColorRED">' + parseFloat(value).toFixed(1) + '</span>';
+            }
+        }
+
+        function cellRenderColorBLUE_FRIDAY(row, columnfield, value, defaulthtml, columnproperties, rowdata) {
+
+            if (FRIDAY_HOILDAY) {
+                return '<span class ="cellRenderColorGRAY">' + parseFloat(value).toFixed(1) + '</span>';
+            }
+
+            else {
+                return '<span class ="cellRenderColorBLUE">' + parseFloat(value).toFixed(1) + '</span>';
+
+            }
+
+        }
+
+
+
+        //실적합
+        function cellRenderColorRED_Total(row, columnfield, value, defaulthtml, columnproperties, rowdata) {
+
+            var result =
+                parseFloat(rowdata["new_d_input_real_monday"])
+                + parseFloat(rowdata["new_d_input_real_tuesday"])
+                + parseFloat(rowdata["new_d_input_real_wednesday"])
+                + parseFloat(rowdata["new_d_input_real_thursday"])
+                + parseFloat(rowdata["new_d_input_real_friday"]);
+
+            return '<span class ="cellRenderColorRED_Total">' + parseFloat(result).toFixed(1) + '</span>';
+        }
+        //예상합
+        function cellRenderColorBLUE_Total(row, columnfield, value, defaulthtml, columnproperties, rowdata) {
+
+            var result =
+                parseFloat(rowdata["new_d_input_expected_monday"])
+                + parseFloat(rowdata["new_d_input_expected_tuesday"])
+                + parseFloat(rowdata["new_d_input_expected_wednesday"])
+                + parseFloat(rowdata["new_d_input_expected_thursday"])
+                + parseFloat(rowdata["new_d_input_expected_friday"]);
+
+            return '<span class ="cellRenderColorBLUE_Total">' + parseFloat(result).toFixed(1) + '</span>';
+
+        }
+
+        function aggregatesSumRenderRED(aggregates) {
+            var renderstring = "";
+
+            var renderValue;
+
+            if (aggregates.sum === undefined) {
+                renderValue = "-";
+            }
+            else {
+                renderValue = aggregates.sum;
+            }
+
+            if (renderValue == 0) {
+                return renderstring + "<div class='cellRenderColorGRAY'>" + renderValue + "" + "</div>" + "";
+            }
+
+            return renderstring + "<div class='Total_Sum_Value_RED'>" + renderValue + "" + "</div>" + "";
+        }
+
+        function aggregatesSumRenderBLUE(aggregates) {
+            var renderstring = "";
+
+            var renderValue;
+
+            if (aggregates.sum === undefined) {
+                renderValue = "-";
+            }
+            else {
+                renderValue = aggregates.sum;
+            }
+
+            if (renderValue == 0) {
+                return renderstring + "<div class='cellRenderColorGRAY'>" + renderValue + "" + "</div>" + "";
+
+            }
+
+
+            return renderstring + "<div class='Total_Sum_Value_BLUE'>" + renderValue + "" + "</div>" + "";
+        }
+
+        function aggregatesSumRenderRED_MONDAY(aggregates) {
+            var renderstring = "";
+
+            var renderValue;
+
+            if (aggregates.sum === undefined) {
+                renderValue = "-";
+            }
+            else {
+                renderValue = aggregates.sum;
+            }
+
+            if (MONDAY_HOILDAY) {
+                return renderstring + "<div class='cellRenderColorGRAY'>" + "휴무" + "</div>" + "";
+
+            }
+
+            return renderstring + "<div class='Total_Sum_Value_RED'>" + renderValue + "" + "</div>" + "";
+        }
+
+        function aggregatesSumRenderBLUE_MONDAY(aggregates) {
+            var renderstring = "";
+
+            var renderValue;
+
+            if (aggregates.sum === undefined) {
+                renderValue = "-";
+            }
+            else {
+                renderValue = aggregates.sum;
+            }
+
+
+            if (MONDAY_HOILDAY) {
+                return renderstring + "<div class='cellRenderColorGRAY'>" + "휴무" + "</div>" + "";
+            }
+
+            return renderstring + "<div class='Total_Sum_Value_BLUE'>" + renderValue + "" + "</div>" + "";
+        }
+
+        function aggregatesSumRenderRED_TUESDAY(aggregates) {
+            var renderstring = "";
+
+            var renderValue;
+
+            if (aggregates.sum === undefined) {
+                renderValue = "-";
+            }
+            else {
+                renderValue = aggregates.sum;
+            }
+
+            if (TUESDAY_HOILDAY) {
+                return renderstring + "<div class='cellRenderColorGRAY'>" + "휴무" + "</div>" + "";
+
+            }
+
+            return renderstring + "<div class='Total_Sum_Value_RED'>" + renderValue + "" + "</div>" + "";
+        }
+
+        function aggregatesSumRenderBLUE_TUESDAY(aggregates) {
+            var renderstring = "";
+
+            var renderValue;
+
+            if (aggregates.sum === undefined) {
+                renderValue = "-";
+            }
+            else {
+                renderValue = aggregates.sum;
+            }
+
+
+            if (TUESDAY_HOILDAY) {
+                return renderstring + "<div class='cellRenderColorGRAY'>" + "휴무" + "</div>" + "";
+            }
+
+            return renderstring + "<div class='Total_Sum_Value_BLUE'>" + renderValue + "" + "</div>" + "";
+        }
+
+        function aggregatesSumRenderRED_WEDSDAY(aggregates) {
+            var renderstring = "";
+
+            var renderValue;
+
+            if (aggregates.sum === undefined) {
+                renderValue = "-";
+            }
+            else {
+                renderValue = aggregates.sum;
+            }
+
+            if (WEDSDAY_HOILDAY) {
+                return renderstring + "<div class='cellRenderColorGRAY'>" + "휴무" + "</div>" + "";
+
+            }
+
+            return renderstring + "<div class='Total_Sum_Value_RED'>" + renderValue + "" + "</div>" + "";
+        }
+
+        function aggregatesSumRenderBLUE_WEDSDAY(aggregates) {
+            var renderstring = "";
+
+            var renderValue;
+
+            if (aggregates.sum === undefined) {
+                renderValue = "-";
+            }
+            else {
+                renderValue = aggregates.sum;
+            }
+
+
+            if (WEDSDAY_HOILDAY) {
+                return renderstring + "<div class='cellRenderColorGRAY'>" + "휴무" + "</div>" + "";
+            }
+
+            return renderstring + "<div class='Total_Sum_Value_BLUE'>" + renderValue + "" + "</div>" + "";
+        }
+
+        function aggregatesSumRenderRED_THURSDAY(aggregates) {
+            var renderstring = "";
+
+            var renderValue;
+
+            if (aggregates.sum === undefined) {
+                renderValue = "-";
+            }
+            else {
+                renderValue = aggregates.sum;
+            }
+
+            if (THURSDAY_HOILDAY) {
+                return renderstring + "<div class='cellRenderColorGRAY'>" + "휴무" + "</div>" + "";
+
+            }
+
+            return renderstring + "<div class='Total_Sum_Value_RED'>" + renderValue + "" + "</div>" + "";
+        }
+
+        function aggregatesSumRenderBLUE_THURSDAY(aggregates) {
+            var renderstring = "";
+
+            var renderValue;
+
+            if (aggregates.sum === undefined) {
+                renderValue = "-";
+            }
+            else {
+                renderValue = aggregates.sum;
+            }
+
+
+            if (THURSDAY_HOILDAY) {
+                return renderstring + "<div class='cellRenderColorGRAY'>" + "휴무" + "</div>" + "";
+            }
+
+            return renderstring + "<div class='Total_Sum_Value_BLUE'>" + renderValue + "" + "</div>" + "";
+        }
+
+        function aggregatesSumRenderRED_FRIDAY(aggregates) {
+            var renderstring = "";
+
+            var renderValue;
+
+            if (aggregates.sum === undefined) {
+                renderValue = "-";
+            }
+            else {
+                renderValue = aggregates.sum;
+            }
+
+            if (FRIDAY_HOILDAY) {
+                return renderstring + "<div class='cellRenderColorGRAY'>" + "휴무" + "</div>" + "";
+
+            }
+
+            return renderstring + "<div class='Total_Sum_Value_RED'>" + renderValue + "" + "</div>" + "";
+        }
+
+        function aggregatesSumRenderBLUE_FRIDAY(aggregates) {
+            var renderstring = "";
+
+            var renderValue;
+
+            if (aggregates.sum === undefined) {
+                renderValue = "-";
+            }
+            else {
+                renderValue = aggregates.sum;
+            }
+
+
+            if (FRIDAY_HOILDAY) {
+                return renderstring + "<div class='cellRenderColorGRAY'>" + "휴무" + "</div>" + "";
+            }
+
+            return renderstring + "<div class='Total_Sum_Value_BLUE'>" + renderValue + "" + "</div>" + "";
+        }
+
+
+
+        function updateDetailGridByColumn(detailID, column, value) {
+
+
+            if (value == "진행중") { value = 100000000; }
+            if (value == "완료") { value = 100000001; }
+            if (value == "보류") { value = 100000002; }
+
+
+            var data = {};
+            data[column] = value;
+
+            //$("#grid").jqxGrid({ disabled: true });
+
+            window.top.parent.Xrm.WebApi.updateRecord("new_weekly_report_detail", detailID, data).then(
+                function success(result) {
+                    //
+                    //alert("데이터 업데이트 성공");
+                    //getGridData(1);
+                    //$("#grid").jqxGrid({ disabled: false });
+
+                },
+                function (error) {
+
+                    if (error.errorCode == 2147779334) {
+                        alert("권한이 없는 사용자입니다. ");
+                    }
+                    else {
+                        alert("에러가 발생했습니다. 관리자에게 문의하여주세요.");
+                    }
+                    location.reload();
+                }
+            );
+
+
+        }
+
+
+        function PopupCenter(url, title, w, h, opts) {
+            var _innerOpts = '';
+            if (opts !== null && typeof opts === 'object') {
+                for (var p in opts) {
+                    if (opts.hasOwnProperty(p)) {
+                        _innerOpts += p + '=' + opts[p] + ',';
+                    }
+                }
+            }
+            // Fixes dual-screen position, Most browsers, Firefox
+            var dualScreenLeft = window.screenLeft != undefined ? window.screenLeft : screen.left;
+            var dualScreenTop = window.screenTop != undefined ? window.screenTop : screen.top;
+
+            var width = window.innerWidth ? window.innerWidth : document.documentElement.clientWidth ? document.documentElement.clientWidth : screen.width;
+            var height = window.innerHeight ? window.innerHeight : document.documentElement.clientHeight ? document.documentElement.clientHeight : screen.height;
+
+            var left = ((width / 2) - (w / 2)) + dualScreenLeft;
+            var top = ((height / 2) - (h / 2)) + dualScreenTop;
+            var newWindow = window.open(url, title, _innerOpts + ' width=' + w + ', height=' + h + ', top=' + top + ', left=' + left);
+
+            // Puts focus on the newWindow
+            if (window.focus) {
+                newWindow.focus();
+            }
+
+            return newWindow;
+        }
+
+        function CreateMonthInput(id) {
+            $("#" + id).monthpicker({
+                monthNames: ['1월(JAN)', '2월(FEB)', '3월(MAR)', '4월(APR)', '5월(MAY)', '6월(JUN)',
+                    '7월(JUL)', '8월(AUG)', '9월(SEP)', '10월(OCT)', '11월(NOV)', '12월(DEC)'],
+                monthNamesShort: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
+                showOn: "focus",
+                //buttonImage: "../../Images/Goods/calendar.jpg",
+                buttonImageOnly: true,
+                changeYear: false,
+                yearRange: 'c-2:c+2',
+                dateFormat: 'yy-mm'
+            });
+
+        }
+
+    </script>
+    <title>주간업무보고 Editor(개발)</title>
+</head>
+
+<body>
+
+    <!--<div class="sum">
+        <ul>
+            <li>
+                <input type="button" onclick="addClick()" value="추가" class="btn01" />
+            </li>
+            <li>
+                <input type="button" onclick="delClick()" value="삭제" class="btn01" />
+            </li>
+        </ul>
+    </div>-->
+    <!--<div class="button"></div>
+    <div class="button"></div>-->
+
+    <div id="jqxLoader">
+        <div id="grid" style="width: 100%; "></div>
+
+        <div id='jqxwindow'>
+
+
+            <div>
+                주차 복사
+            </div>
+
+            <div>
+                선택복사 :
+                <input id="selectcopy" type="checkbox" name="checkcopy" />
+                <div>
+                    휴무일 처리 :
+
+                    <input type="checkbox" id="checkholiday" name="holiday" checked="checked" />
+
+                </div>
+                <br />
+
+
+                <select name="sel_year" id="sel_year">
+                    <option value="2021">2021년</option>
+
+                </select>
+
+                <select name="sel_month" id="sel_month">
+                    <option value="1">1월</option>
+                    <option value="2">2월</option>
+                    <option value="3">3월</option>
+                    <option value="4">4월</option>
+                    <option value="5">5월</option>
+                    <option value="6">6월</option>
+                    <option value="7">7월</option>
+                    <option value="8">8월</option>
+                    <option value="9">9월</option>
+                    <option value="10">10월</option>
+                    <option value="11">11월</option>
+                    <option value="12">12월</option>
+                </select>
+                <select name="sel_week" id="sel_week"></select>
+
+
+                <br />
+                복사하시겠습니까?
+                <input type="button" value="확인" id="button_yes" />
+                <input type="button" value="취소" id="button_no" />
+
+            </div>
+        </div>
+
+        <!--<div class="modal"></div>-->
+    </div>
+
+
+</body>
+</html>
+
